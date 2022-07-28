@@ -91,6 +91,11 @@ const Cart = () => {
 
   const cartQuantity = products.length;
 
+
+
+
+
+
   useEffect(() => {
     const getCart = async () => {
       try {
@@ -99,7 +104,7 @@ const Cart = () => {
       } catch (err) {}
     };
     getCart();
-  }, [id, products]);
+  }, []);
 
   return (
     <Container>

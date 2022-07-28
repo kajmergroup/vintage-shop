@@ -6,7 +6,6 @@ const {
   verifyTokenAndAdmin,
 } = require("./verifyToken");
 const jwt = require("jsonwebtoken");
-const { query } = require("express");
 
 const router = require("express").Router();
 
@@ -32,7 +31,6 @@ router.post("/cart", verifyToken, async (req, res) => {
         productItem.quantity = quantity;
         productItem.size = size;
         productItem.color = color;
-        cart.products[itemIndex] = productItem;
       } else {
         cart.products.push({
           productId,
@@ -60,7 +58,7 @@ router.post("/cart", verifyToken, async (req, res) => {
   }
 });
 
-//GET PRODUCT IN CART
+//GET CART
 router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const cart = await Cart.findOne({ userId: req.params.userId });
@@ -80,7 +78,6 @@ router.delete(
     const userId = jwt.verify(token, process.env.JWT_SEC, (err, user) => {
       return user.id;
     });
-    const id = mongoose.Types.ObjectId(prodId);
 
     try {
       const updatedCart = await Cart.findOneAndUpdate(userId, {
@@ -93,19 +90,30 @@ router.delete(
   }
 );
 
-//UPDATE
+//QUANTITY
 router.put("/:productId", verifyTokenAndAuthorization, async (req, res) => {
+  const vrb = req.body.x;
+  console.log(vrb)
+  const prodId = req.params.productId;
+  const token = req.headers.token.split(" ")[1];
+  const userId = jwt.verify(token, process.env.JWT_SEC, (err, user) => {
+    if (err) return res.status(401).json("token is not valid!");
+    return user.id;
+  });
+
   try {
-    const updatedCart = await Cart.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: req.body,
-      },
-      { new: true }
-    );
-    res.status(200).json(updatedCart);
+    const cart = await Cart.findOne({ userId });
+    const itemIndex = cart.products.findIndex((p) => p.productId == prodId);
+    productItem = cart.products[itemIndex];
+    if (vrb === "+") {
+      productItem.quantity += 1;
+    }  else  {
+      productItem.quantity -= 1;
+    }
+    await cart.save();
+    res.status(200).json(cart);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json("olmadi");
   }
 });
 
