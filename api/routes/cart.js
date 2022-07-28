@@ -93,7 +93,7 @@ router.delete(
 //QUANTITY
 router.put("/:productId", verifyTokenAndAuthorization, async (req, res) => {
   const vrb = req.body.x;
-  console.log(vrb)
+  console.log(vrb)d
   const prodId = req.params.productId;
   const token = req.headers.token.split(" ")[1];
   const userId = jwt.verify(token, process.env.JWT_SEC, (err, user) => {
