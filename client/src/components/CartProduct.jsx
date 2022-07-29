@@ -2,7 +2,7 @@ import { Add, Remove, Delete } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { userRequest } from "../requestMethods";
-import { useState , useEffect} from "react";
+import { useState, useEffect } from "react";
 
 const Product = styled.div`
   margin-top: 15px;
@@ -67,50 +67,31 @@ const ProductPrice = styled.div`
 `;
 
 const CartProduct = ({ product }) => {
-  const id = product.productId
-  const inc = "+"
-  const dec = "-"
-  
+  const id = product.productId;
 
   const deleteProduct = async () => {
-    
     userRequest.delete("/carts/delete/" + id);
+  };
 
-  }
-
-  const updateQuantity = async (e) => {
-    e.preventDefault();
+  const updateQuantity = async () => {
     const x = {
-      inc
-    }
-    try{
-      userRequest.put("/carts/" + id,x)
-    }catch(err){
-    }
-  }
-  const updateQuantityy = async (e) => {
-    e.preventDefault();
+      x: "+",
+    };
+    try {
+      userRequest.put("/carts/" + id, x);
+    } catch (err) {}
+  };
+
+  const updateQuantityy = async () => {
     const x = {
-      dec
-    }
-    try{
-      userRequest.put("/carts/" + id,x)
-    }catch(err){
-    }
-  }
- 
+      x: "-",
+    };
+    try {
+      userRequest.put("/carts/" + id, x);
+    } catch (err) {}
+  };
 
 
-
-  // const [quantity, setQuantity] = useState(2);
-
-  // const handleQuantity = (type) => {
-  //   if (type === "dec") {
-  //     quantity > 1 && setQuantity(quantity - 1);
-  //   } else {
-  //     setQuantity(quantity + 1);
-  //   }
-  // };
 
   return (
     <>
@@ -129,14 +110,12 @@ const CartProduct = ({ product }) => {
         </ProductDetail>
         <PriceDetail>
           <ProductAmountContainer>
-            <Add onClick={updateQuantity}/>
+            <Add onClick={updateQuantity} />
             <ProductAmount>{product.quantity}</ProductAmount>
-            <Remove onClick={updateQuantityy}/>
+            <Remove onClick={updateQuantityy} />
           </ProductAmountContainer>
           <ProductPrice>₺ {product.price * product.quantity}</ProductPrice>
-          <Delete
-            onClick={deleteProduct}
-          />
+          <Delete onClick={deleteProduct} />
         </PriceDetail>
       </Product>
     </>

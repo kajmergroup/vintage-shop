@@ -24,7 +24,7 @@ router.post("/cart", verifyToken, async (req, res) => {
 
     if (cart) {
       let itemIndex = cart.products.findIndex((p) => p.productId == productId);
-      console.log(itemIndex);
+      
 
       if (itemIndex > -1) {
         let productItem = cart.products[itemIndex];
@@ -62,7 +62,7 @@ router.post("/cart", verifyToken, async (req, res) => {
 router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const cart = await Cart.findOne({ userId: req.params.userId });
-    res.status(200).json(cart);
+    res.status(200).json(cart.products);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -93,7 +93,6 @@ router.delete(
 //QUANTITY
 router.put("/:productId", verifyTokenAndAuthorization, async (req, res) => {
   const vrb = req.body.x;
-  console.log(vrb)
   const prodId = req.params.productId;
   const token = req.headers.token.split(" ")[1];
   const userId = jwt.verify(token, process.env.JWT_SEC, (err, user) => {
@@ -110,6 +109,12 @@ router.put("/:productId", verifyTokenAndAuthorization, async (req, res) => {
     }  else  {
       productItem.quantity -= 1;
     }
+    try {
+      if(productItem.quantity === 0){
+        cart.products.splice(itemIndex,1)
+      }
+    }catch(err){err}
+    
     await cart.save();
     res.status(200).json(cart);
   } catch (err) {

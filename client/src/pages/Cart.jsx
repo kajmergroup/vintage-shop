@@ -88,29 +88,31 @@ const Button = styled.button`
 const Cart = () => {
   const [products, setProducts] = useState([]);
   const id = useSelector((state) => state.user.currentUser._id);
-
   const cartQuantity = products.length;
+  
+  
+  
+  
 
-
-
-
+  
 
 
   useEffect(() => {
     const getCart = async () => {
       try {
         const res = await userRequest.get("/carts/find/" + id);
-        setProducts(res.data.products);
+        console.log(typeof res.data)
+        setProducts(res.data);
       } catch (err) {}
     };
     getCart();
-  }, []);
+  },[]);
 
   return (
     <Container>
       <Navbar />
       <Wrapper>
-        <Title>SEPETİM ({cartQuantity} Ürün)</Title>
+        <Title>SEPETİM({cartQuantity} Ürün)</Title>
         <Top>
           <TopButton>ALIŞVERİŞE DEVAM ET</TopButton>
 
