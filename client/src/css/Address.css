@@ -1,0 +1,141 @@
+.payment-header{
+    font-size: 46px;
+    font-weight: 700;
+}
+.address-modal{
+    width: 520px;
+    border-radius: 6px;
+    max-height: 95vh;
+}
+
+label {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    color: #333;
+    margin-top: 4px;
+}
+input {
+    width: 100%;
+    height: 42px;
+    border-radius: 6px;
+    padding: 8px 10px;
+    background-color: #fbfbfb;
+    border: 1px solid #e6e6e6;
+    
+}
+
+textarea {
+    
+    border-radius: 6px;
+    padding: 5x 8px;
+    resize: none;
+    height: calc(3em + 4px*3 + 20px);
+    background-color: #fbfbfb;
+    border: 1px solid #e6e6e6;
+}
+.flex-column{
+    width: 100% ;
+}
+
+.submit {
+    width: 100%;
+    margin-top: 6px;
+    border-radius: 6px;
+    height: 48px;
+    font-size: 18px;
+    background-color: teal;
+    border-style: none;
+    color: white;
+    
+}
+.submit:hover {
+    background-color: #66BFBF;
+}
+
+.p-tabs {
+    border-radius: 6px;
+    border: 1px solid #e2e2e2;
+    cursor: pointer;
+    background-color: #fafafa;
+}
+.sperator{
+    background-color: red;
+    width: 2px;
+    
+}
+
+.address-text{
+    font-size: 16px;
+    color: #666;
+}
+.header {
+    font-size: 22px;
+    font-weight: 600;
+    color: teal;
+}
+.address-box {
+    cursor:pointer;
+    width: 500px;
+    height: 150px;
+    border-radius: 6px;
+    border: 1px solid #e6e6e6;
+    background-color: #fafafa;
+}
+.address-wrapper{
+    border-radius: 6px;
+    padding: 45px;
+    margin-top: 20px;
+    background-color: white;
+    border: 1px solid #e2e2e2;
+}
+.payment-box{
+    padding: 20px;
+    width: 500px;
+    height: 250px;
+    border-radius: 6px;
+    border: 1px solid #e6e6e6;
+    background-color: #fafafa;
+}
+.checkbox {
+    width: 20px;
+    height: 20px;
+}
+.payment-options:active {
+    background-color: #fafafa;
+}
+.p-layout{
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+}
+.content {
+    width: 930px;
+}
+#address {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.p-summary{
+    width: 247px;
+}
+.kvkk {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 1px solid #e6e6e6;
+    border-radius: 6px;
+    background: white;
+}
+.kvkk-text{
+    font-size: 12px;
+    margin: 0;
+}
+#space {
+    height: 1px;
+    width: 100%;
+    background: black;
+}

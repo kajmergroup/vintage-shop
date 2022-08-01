@@ -12,6 +12,7 @@ import {
   Navigate
 } from "react-router-dom";
 import AddProduct from "./pages/AddProduct";
+import Address from "./pages/Address";
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/cart" element={<Cart/>}/>
+        <Route path="/address" element={<Address/>}/>
          
       </Routes>
     </Router>

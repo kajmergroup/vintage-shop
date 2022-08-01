@@ -7,6 +7,7 @@ import { userRequest } from "../requestMethods";
 import { useState } from "react";
 import { useEffect } from "react";
 import CartProduct from "../components/CartProduct";
+import { Link } from "react-router-dom";
 
 const Container = styled.div``;
 
@@ -89,24 +90,17 @@ const Cart = () => {
   const [products, setProducts] = useState([]);
   const id = useSelector((state) => state.user.currentUser._id);
   const cartQuantity = products.length;
-  
-  
-  
-  
-
-  
-
 
   useEffect(() => {
     const getCart = async () => {
       try {
         const res = await userRequest.get("/carts/find/" + id);
-        console.log(typeof res.data)
+        console.log(typeof res.data);
         setProducts(res.data);
       } catch (err) {}
     };
     getCart();
-  },[]);
+  }, []);
 
   return (
     <Container>
@@ -144,7 +138,9 @@ const Cart = () => {
               <SummaryItemText>Toplam</SummaryItemText>
               <SummaryItemPrice>₺ </SummaryItemPrice>
             </SummaryItem>
-            <Button>SEPETİ ONAYLA</Button>
+            <Link to="/address">
+              <Button>SEPETİ ONAYLA</Button>
+            </Link>
           </Summary>
         </Bottom>
       </Wrapper>
