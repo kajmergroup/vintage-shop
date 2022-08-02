@@ -72,7 +72,6 @@ const Right = styled.div`
   flex: 1;
   padding: 20px;
   ${mobile({ backgroundColor: "#fff8f8" })}
-
 `;
 
 const ContactItem = styled.div`
@@ -82,7 +81,7 @@ const ContactItem = styled.div`
 `;
 
 const Payment = styled.img`
-    width: 50%;
+  width: 50%;
 `;
 
 const Footer = () => {
@@ -91,7 +90,11 @@ const Footer = () => {
       <Left>
         <Logo>BCH.</Logo>
         <Desc>
-         BCH Studios, Dünyaca ünlü markaların Vintage koleksiyonlarını ve sokak giyim kültürüne ait unisex ürünleri zamansızlaştırarak sizinle buluşturuyor. Bireyselliğini eşsiz giyim tarzıyla tamamlamak isteyenlerin ortak noktası olan BCH. , alışılmış kalıpların dışına çıkarak özgür zihinlerin odak noktasında kalmayı hedefliyor.
+          BCH Studios, Dünyaca ünlü markaların Vintage koleksiyonlarını ve sokak
+          giyim kültürüne ait unisex ürünleri zamansızlaştırarak sizinle
+          buluşturuyor. Bireyselliğini eşsiz giyim tarzıyla tamamlamak
+          isteyenlerin ortak noktası olan BCH. , alışılmış kalıpların dışına
+          çıkarak özgür zihinlerin odak noktasında kalmayı hedefliyor.
         </Desc>
         <SocialContainer>
           <SocialIcon color="3B5999">
@@ -122,13 +125,14 @@ const Footer = () => {
       <Right>
         <Title>İletişim</Title>
         <ContactItem>
-          <Room style={{marginRight:"10px"}}/> Kazımdirik mah. 220/1 sk. Özboran Apt. Kat:3 Daire:12 No:5 Bornova/İzmir
+          <Room style={{ marginRight: "10px" }} /> Kazımdirik mah. 220/1 sk.
+          Özboran Apt. Kat:3 Daire:12 No:5 Bornova/İzmir
         </ContactItem>
         <ContactItem>
-          <Phone style={{marginRight:"10px"}}/> 543 521 3580
+          <Phone style={{ marginRight: "10px" }} /> 543 521 3580
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{marginRight:"10px"}} /> kajmergroup@gmail.com
+          <MailOutline style={{ marginRight: "10px" }} /> kajmergroup@gmail.com
         </ContactItem>
         <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>

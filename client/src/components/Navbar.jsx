@@ -63,7 +63,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const handleClick = (e) => {
-    console.log("calisio");
+   
     logout(dispatch);
   };
 

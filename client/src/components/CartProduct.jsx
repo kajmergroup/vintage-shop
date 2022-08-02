@@ -2,7 +2,7 @@ import { Add, Remove, Delete } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { userRequest } from "../requestMethods";
-import { useState, useEffect } from "react";
+
 
 const Product = styled.div`
   margin-top: 15px;
@@ -66,11 +66,15 @@ const ProductPrice = styled.div`
   ${mobile({ marginBottom: "20px" })}
 `;
 
-const CartProduct = ({ product }) => {
+const CartProduct = ({ product, setProductQuantity }) => {
   const id = product.productId;
+  
 
+
+  
   const deleteProduct = async () => {
     userRequest.delete("/carts/delete/" + id);
+    setProductQuantity(product.quantity = 0)
   };
 
   const updateQuantity = async () => {
@@ -78,7 +82,8 @@ const CartProduct = ({ product }) => {
       x: "+",
     };
     try {
-      userRequest.put("/carts/" + id, x);
+      await userRequest.put("/carts/" + id, x);
+      setProductQuantity(product.quantity)
     } catch (err) {}
   };
 
@@ -87,7 +92,8 @@ const CartProduct = ({ product }) => {
       x: "-",
     };
     try {
-      userRequest.put("/carts/" + id, x);
+      const res = userRequest.put("/carts/" + id, x);
+      setProductQuantity(product.quantity)
     } catch (err) {}
   };
 

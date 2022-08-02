@@ -8,15 +8,29 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
+import { useEffect } from "react";
+import { userRequest } from "../requestMethods";
 const Address = () => {
-  const user = useSelector((state)=> state.user.currentUser)
-  const address = user.address[0]
+  const user = useSelector((state) => state.user.currentUser);
+  const id = user._id;
+  
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const [display, setDisplay] = useState("none");
   const [see, setSee] = useState("block");
+  const [address, setAddress] = useState([]);
   
+
+  useEffect( () => {
+    const fetchData = async() =>{
+      const res = await userRequest.get("users/find/" + id);
+      setAddress(res.data.address);
+    }
+    fetchData();
+     
+  }, [id]);
+
   const handleClick = () => {
     setDisplay("block");
     setSee("none");
@@ -29,10 +43,9 @@ const Address = () => {
   return (
     <>
       <div className="container">
-      <div className="payment-header">BCH.</div>
+        <div className="payment-header">BCH.</div>
       </div>
       <main id="address">
-        
         <div className="p-layout">
           <div className="content">
             <div className="d-flex p-tabs">
@@ -42,10 +55,8 @@ const Address = () => {
               >
                 <div className="header">Adres Bilgileri</div>
                 <div className="address-text d-flex flex-column">
-                  <span>
-                    {address.address_line}
-                  </span>
-                  <span>{address.city}/{address.town}</span>
+                  <span>Kazımdirik mah</span>
+                  <span>İzmir/Bornova</span>
                 </div>
               </div>
               <div className="sperator"></div>
@@ -73,28 +84,30 @@ const Address = () => {
                     </div>
                     <span>Yeni Adres Ekle</span>
                   </div>
-                  <div className="address-box d-flex flex-column p-3">
-                    <div className="d-flex justify-content-between m-1">
-                      <div className="d-flex">
-                        <div>
-                          <PersonIcon />
+                  {address.map((address) => (
+                    <div className="address-box d-flex flex-column p-3">
+                      <div className="d-flex justify-content-between m-1">
+                        <div className="d-flex">
+                          <div>
+                            <PersonIcon />
+                          </div>
+                          <span>
+                            {user.first_name} {user.last_name}
+                          </span>
                         </div>
-                        <span>{user.first_name} {user.last_name}</span>
+                        <div className="d-flex">
+                          <div>
+                            <PhoneIphoneIcon />
+                          </div>
+                          <span>{address.phone}</span>
+                        </div>
                       </div>
-                      <div className="d-flex">
-                        <div>
-                          <PhoneIphoneIcon />
-                        </div>
-                        <span>(543)*** **80</span>
+                      <div className="d-flex flex-column m-2">
+                        <span>{address.address_line}</span>
+                        <span>{address.city}/{address.town}</span>
                       </div>
                     </div>
-                    <div className="d-flex flex-column m-2">
-                      <span>
-                        {address.address_line}
-                      </span>
-                      <span>{address.city}/{address.town}</span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
               <div style={{ display: display }}>
@@ -156,8 +169,8 @@ const Address = () => {
                 <p>189 TL</p>
               </div>
               <div>
-              <button className="submit">Kaydet ve Devam Et</button>
-            </div>
+                <button className="submit">Kaydet ve Devam Et</button>
+              </div>
             </div>
           </div>
         </div>

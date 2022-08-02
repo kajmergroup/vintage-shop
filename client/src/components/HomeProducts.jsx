@@ -12,7 +12,7 @@ const Container = styled.div`
 
 const HomeProducts = () => {
   const [products, setProducts] = useState([]);
-  console.log(products)
+  
 
   useEffect(() => {
     const fetchProducts = async () => {

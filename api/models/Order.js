@@ -29,8 +29,23 @@ const OrderSchema = new mongoose.Schema(
 
       },
     ],
-    amount: { type: Number, required: true },
-    address: { type: String, required: true },
+    amount: { type: Number, required: false },
+    address: [
+      {
+        city: {
+          type: String,
+        },
+        town: {
+          type: String,
+        },
+        address_line: {
+          type: String,
+        },
+        postal_code: {
+          type: Number,
+        },
+      },
+    ],
     status: { type: String, default: "pending" },
   },
   { timestamps: true }

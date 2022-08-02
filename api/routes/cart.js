@@ -24,7 +24,6 @@ router.post("/cart", verifyToken, async (req, res) => {
 
     if (cart) {
       let itemIndex = cart.products.findIndex((p) => p.productId == productId);
-      
 
       if (itemIndex > -1) {
         let productItem = cart.products[itemIndex];
@@ -53,13 +52,13 @@ router.post("/cart", verifyToken, async (req, res) => {
       return res.status(201).send(newCart);
     }
   } catch (err) {
-    console.log(err);
+    
     res.status(500).send("Something went wrong");
   }
 });
 
 //GET CART
-router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
+router.get("/find/:userId", async (req, res) => {
   try {
     const cart = await Cart.findOne({ userId: req.params.userId });
     res.status(200).json(cart.products);
@@ -71,18 +70,21 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
 //DELETE PRODUCT IN CART
 router.delete(
   "/delete/:productId",
-  verifyTokenAndAuthorization,
+
   async (req, res) => {
     const prodId = req.params.productId;
     const token = req.headers.token.split(" ")[1];
     const userId = jwt.verify(token, process.env.JWT_SEC, (err, user) => {
       return user.id;
     });
-
+    
+    
+    
     try {
       const updatedCart = await Cart.findOneAndUpdate(userId, {
         $pull: { products: { productId: prodId } },
       });
+      
       res.status(200).json(updatedCart);
     } catch (err) {
       res.status(500).json(err);
@@ -91,11 +93,10 @@ router.delete(
 );
 
 //QUANTITY
-router.put("/:productId", verifyTokenAndAuthorization, async (req, res) => {
+router.put("/:productId", async (req, res) => {
   const vrb = req.body.x;
 
-
-  console.log(vrb)
+  
 
   const prodId = req.params.productId;
   const token = req.headers.token.split(" ")[1];
@@ -110,15 +111,17 @@ router.put("/:productId", verifyTokenAndAuthorization, async (req, res) => {
     productItem = cart.products[itemIndex];
     if (vrb === "+") {
       productItem.quantity += 1;
-    }  else  {
+    } else {
       productItem.quantity -= 1;
     }
     try {
-      if(productItem.quantity === 0){
-        cart.products.splice(itemIndex,1)
+      if (productItem.quantity === 0) {
+        cart.products.splice(itemIndex, 1);
       }
-    }catch(err){err}
-    
+    } catch (err) {
+      err;
+    }
+
     await cart.save();
     res.status(200).json(cart);
   } catch (err) {

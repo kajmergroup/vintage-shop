@@ -133,7 +133,7 @@ const Product = () => {
   const price = product.price;
   const img = product.img;
 
-  console.log(name);
+  
   const handleAddCart = async (e) => {
     e.preventDefault();
     const newCart = {
