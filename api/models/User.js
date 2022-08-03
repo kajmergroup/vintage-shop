@@ -10,6 +10,9 @@ const UserSchema = new mongoose.Schema(
     last_name: { type: String, required: false },
     address: [
       {
+        address_title: {
+          type: String,
+        },
         city: {
           type: String,
         },

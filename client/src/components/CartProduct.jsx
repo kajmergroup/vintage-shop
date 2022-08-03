@@ -1,33 +1,7 @@
 import { Add, Remove, Delete } from "@material-ui/icons";
 import styled from "styled-components";
-import { mobile } from "../responsive";
 import { userRequest } from "../requestMethods";
-
-
-const Product = styled.div`
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
-`;
-
-const ProductDetail = styled.div`
-  flex: 2;
-  display: flex;
-`;
-
-const Image = styled.img`
-  width: 200px;
-`;
-
-const Details = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-`;
-
-const ProductName = styled.span``;
+import "../css/CartProduct.css";
 
 const ProductColor = styled.div`
   width: 20px;
@@ -36,45 +10,12 @@ const ProductColor = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-const ProductSize = styled.span``;
-
-const PriceDetail = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ProductAmountContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-`;
-
-const ProductAmount = styled.div`
-  font-size: 24px;
-  margin: 5px;
-  ${mobile({ margin: "5px 15px" })}
-`;
-
-const ProductPrice = styled.div`
-  display: flex;
-  justify-items: space-between;
-  font-size: 30px;
-  font-weight: 200;
-  ${mobile({ marginBottom: "20px" })}
-`;
-
-const CartProduct = ({ product, setProductQuantity }) => {
+const CartProduct = ({ product, setProductQuantity, setTotal }) => {
   const id = product.productId;
-  
 
-
-  
   const deleteProduct = async () => {
     userRequest.delete("/carts/delete/" + id);
-    setProductQuantity(product.quantity = 0)
+    setProductQuantity((product.quantity = 0));
   };
 
   const updateQuantity = async () => {
@@ -83,7 +24,7 @@ const CartProduct = ({ product, setProductQuantity }) => {
     };
     try {
       await userRequest.put("/carts/" + id, x);
-      setProductQuantity(product.quantity)
+      setProductQuantity(product.quantity);
     } catch (err) {}
   };
 
@@ -92,38 +33,51 @@ const CartProduct = ({ product, setProductQuantity }) => {
       x: "-",
     };
     try {
-      const res = userRequest.put("/carts/" + id, x);
-      setProductQuantity(product.quantity)
+      userRequest.put("/carts/" + id, x);
+      setProductQuantity(product.quantity);
     } catch (err) {}
   };
 
-
-
   return (
     <>
-      <Product>
-        <ProductDetail>
-          <Image src={product.img} />
-          <Details>
-            <ProductName>
-              <b>Ürün:</b> {product.name}
-            </ProductName>
-            <ProductColor color={product.color} />
-            <ProductSize>
-              <b>Beden:</b> {product.size}
-            </ProductSize>
-          </Details>
-        </ProductDetail>
-        <PriceDetail>
-          <ProductAmountContainer>
+      <div className=" d-flex justify-content-between mb-3">
+        <div className="d-flex product-info">
+          <img className="img img-fluid" src={product.img} />
+          <div className="d-flex flex-column justify-content-center p-3">
+            <div className="d-flex m-1">
+              <p>
+                <strong>Ürün:</strong> {product.name}
+              </p>
+            </div>
+            <div className="d-flex m-1">
+              <p>
+                {" "}
+                <strong>Beden:</strong> {product.size}
+              </p>
+            </div>
+            <div className="m-1">
+              <ProductColor color={product.color} />
+            </div>
+          </div>
+        </div>
+
+        <div className="d-flex  align-items-center  justify-content-between w-25">
+          <div className="d-flex align-items-center">
             <Add onClick={updateQuantity} />
-            <ProductAmount>{product.quantity}</ProductAmount>
+            <span className="product-quantity">{product.quantity}</span>
             <Remove onClick={updateQuantityy} />
-          </ProductAmountContainer>
-          <ProductPrice>₺ {product.price * product.quantity}</ProductPrice>
-          <Delete onClick={deleteProduct} />
-        </PriceDetail>
-      </Product>
+          </div>
+          <div className="product-price d-flex align items center  ">
+            <storng>₺</storng> {product.price * product.quantity}
+          </div>
+          <div className="delete-icon ">
+            <Delete onClick={deleteProduct} />
+          </div>
+        </div>
+      </div>
+        <hr className="space"/>
+      
+      
     </>
   );
 };

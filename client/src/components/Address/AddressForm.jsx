@@ -5,6 +5,7 @@ import { userRequest } from "../../requestMethods";
 const AddressForm = () => {
   const id = useSelector((state) => state.user.currentUser._id);
 
+  const [address_title , setAddress_title] = useState();
   const [city, setCity] = useState();
   const [town, setTown] = useState();
   const [address_line, setAddress_line] = useState();
@@ -20,6 +21,7 @@ const AddressForm = () => {
           address_line,
           postal_code,
           phone,
+          address_title,
         },
       ],
     };
@@ -76,7 +78,10 @@ const AddressForm = () => {
             <div className="d-flex">
               <div className="d-flex flex-column">
                 <label>Adres Başlığı</label>
-                <input type="text" />
+                <input
+                 type="text"
+                 onChange={(e) => setAddress_title(e.target.value)}
+                  />
               </div>
             </div>
             <div className="d-flex flex-column">

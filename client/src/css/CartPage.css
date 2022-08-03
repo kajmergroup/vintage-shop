@@ -1,0 +1,52 @@
+.top-button {
+  padding: 10px;
+  font-weight: 600;
+  border: 1px solid black;
+  border-radius: 0;
+}
+.top-button:hover {
+  color: #fff;
+  background-color: black;
+  padding: 10px;
+  font-weight: 600;
+  border-radius: 0;
+}
+
+.top-button2 {
+    color: #fff;
+    background-color: black;
+    padding: 10px;
+    font-weight: 600;
+    border-radius: 0;
+  }
+.top-button2:hover {
+  padding: 10px;
+  font-weight: 600;
+  border: 1px solid black;
+  border-radius: 0;
+  background-color: #fff;
+}
+
+.summary {
+  padding: 20px;
+  border: 1px solid lightgray;
+}
+
+.summary-total {
+  font-size: 28px;
+}
+
+.accept-buton {
+  padding: 10px;
+  display: inline;
+  width: 247px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+}
+.accept-buton:hover {
+  background-color: #454545;
+  color: white;
+  text-decoration: none;
+}

@@ -1,5 +1,6 @@
 const Order = require("../models/Order");
 const Cart = require("../models/Cart");
+const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const {
   verifyToken,
@@ -17,14 +18,15 @@ router.post("/",  async (req, res) => {
     return user.id;
   });
 
-  
+  const user = await User.findOne({userId})
+  const userAddress = user.address
   const cart = await Cart.findOne({userId})
   const cartProducts = cart.products
-  console.log(cartProducts)
   const newOrder = new Order({
     userId:userId,
     products:cartProducts,
-    address,
+    address:userAddress,
+    amount: cart.cartTotal,
   });
 
   try {
@@ -82,41 +84,8 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-// GET MONTHLY INCOME
 
-router.get("/income", verifyTokenAndAdmin, async (req, res) => {
-  const productId = req.query.pid;
-  const date = new Date();
-  const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
-  const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
 
-  try {
-    const income = await Order.aggregate([
-      {
-        $match: {
-          createdAt: { $gte: previousMonth },
-          ...(productId && {
-            products: { $elemMatch: { productId } },
-          }),
-        },
-      },
-      {
-        $project: {
-          month: { $month: "$createdAt" },
-          sales: "$amount",
-        },
-      },
-      {
-        $group: {
-          _id: "$month",
-          total: { $sum: "$sales" },
-        },
-      },
-    ]);
-    res.status(200).json(income);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+
 
 module.exports = router;

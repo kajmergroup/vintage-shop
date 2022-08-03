@@ -10,6 +10,7 @@ import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import { useEffect } from "react";
 import { userRequest } from "../requestMethods";
+import {Link} from "react-router-dom"
 const Address = () => {
   const user = useSelector((state) => state.user.currentUser);
   const id = user._id;
@@ -40,10 +41,17 @@ const Address = () => {
     setSee("block");
   };
 
+
+  const createOrder = () => {
+    userRequest.post("orders")
+  }
+
   return (
     <>
       <div className="container">
+        <Link to="/">
         <div className="payment-header">BCH.</div>
+        </Link>
       </div>
       <main id="address">
         <div className="p-layout">
@@ -169,7 +177,7 @@ const Address = () => {
                 <p>189 TL</p>
               </div>
               <div>
-                <button className="submit">Kaydet ve Devam Et</button>
+                <button onClick={createOrder} className="submit">Kaydet ve Devam Et</button>
               </div>
             </div>
           </div>
