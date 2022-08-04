@@ -1,0 +1,17 @@
+.navbar-container {
+    height: 60px;
+}
+
+
+.nav-item {
+
+    margin-right: 20px;
+}
+.brand {
+    font-size: 42px;
+    font-weight: 600;
+}
+
+.nav-item:hover {
+    color: #FF8FB1;
+}

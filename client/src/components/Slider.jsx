@@ -2,16 +2,9 @@ import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import { useState } from "react";
 import styled from "styled-components";
 import { sliderItems } from "../data";
-import { mobile } from "../responsive";
 
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  ${mobile({ display: "none" })}
-`;
+import "../css/Slider.css"
+
 
 const Arrow = styled.div`
   width: 50px;
@@ -53,7 +46,7 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-  height: 93%;
+  height: 100%
 `;
 
 const InfoContainer = styled.div`
@@ -90,7 +83,7 @@ const Slider = () => {
   };
 
   return (
-    <Container>
+    <div className="d-flex slider">
       <Arrow direction="left" onClick={() => handleClick("left")}>
         <ArrowLeftOutlined />
       </Arrow>
@@ -111,7 +104,7 @@ const Slider = () => {
       <Arrow direction="right" onClick={() => handleClick("right")}>
         <ArrowRightOutlined />
       </Arrow>
-    </Container>
+    </div>
   );
 };
 

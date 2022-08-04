@@ -55,13 +55,29 @@ router.post("/login", async (req, res) => {
         );
 
         const { password, ...others } = user._doc;
-
-        res.status(200).json({ ...others, accessToken });
+        
+        res.cookie('token', accessToken, {
+          maxAge: 7200000, // 2 hours
+          secure: false, // set to true if you're using https
+          httpOnly: true,
+      }).json(others)
+        // res.status(200).json({ ...others, accessToken });
       }
     }
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+router.get('/logout', function(req,res){
+  res.status(200).cookie('token','none',{
+    expires: new Date(Date.now() + 5 * 1000),
+    httpOnly: true,
+  }).json('oldu')
+  
+  
+})
+
+
 
 module.exports = router;

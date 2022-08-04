@@ -3,144 +3,99 @@ import { ShoppingCartOutlined } from "@material-ui/icons";
 import { Link, NavLink } from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
-import styled from "styled-components";
-import { mobile } from "../responsive";
+import cookie from 'react-cookies'
+
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/apiCalls";
+import "../css/Navbar.css";
+import axios from "axios";
 
-const Container = styled.div`
-  height: 60px;
-  ${mobile({ height: "50px" })}
-`;
 
-const Wrapper = styled.div`
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  ${mobile({ padding: "10px 0px" })}
-`;
-
-const Left = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-`;
-
-const Center = styled.div`
-  display: flex;
-  flex: 1;
-`;
-
-const Logo = styled.h1`
-  font-weight: bold;
-  ${mobile({ fontSize: "24px" })}
-`;
-const Right = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  ${mobile({ flex: 2, justifyContent: "center" })}
-`;
-
-const MenuItem = styled.div`
-  font-size: 14px;
-  cursor: pointer;
-  margin-left: 25px;
-  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
-`;
-const MenuHome = styled.div`
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-left: 25px;
-  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
-`;
 
 const Navbar = () => {
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
 
-  const handleClick = (e) => {
-   
+
+
+
+
+  const handleClick = async  (e) => {
+    await axios.get('http://localhost:5000/api/auth/logout')
     logout(dispatch);
   };
 
-
   return (
-    <Container>
-      <Wrapper>
-        <Left>
+    <div className="navbar-container">
+      <div className="d-flex   justify-content-between align-items-center">
+        <div className="brand">
           <NavLink style={{ textDecoration: "none", color: "black" }} to="/">
-            <Logo>BCH.</Logo>
+            <div className="brand">BCH.</div>
           </NavLink>
-        </Left>
-        <Center>
+        </div>
+        <div className="d-flex">
           <NavLink style={{ textDecoration: "none", color: "black" }} to="/">
-            <MenuHome>ANASAYFA</MenuHome>
+            <p className="nav-item">ANASAYFA</p>
           </NavLink>
           <NavLink
             style={{ textDecoration: "none", color: "black" }}
             to="/products"
           >
-            <MenuItem>Yeni Gelenler</MenuItem>
+            <p className="nav-item">Yeni Gelenler</p>
           </NavLink>
-
           <NavLink
             style={{ textDecoration: "none", color: "black" }}
             to="/products/man"
           >
-            <MenuItem>Erkek</MenuItem>
+            <p className="nav-item">Erkek</p>
           </NavLink>
           <NavLink
             style={{ textDecoration: "none", color: "black" }}
             to="/products/women"
           >
-            <MenuItem>Kadın</MenuItem>
+            <p className="nav-item">Kadın</p>
           </NavLink>
           <NavLink
             style={{ textDecoration: "none", color: "black" }}
             to="/products/children"
           >
-            <MenuItem>Çocuk</MenuItem>
+            <p className="nav-item">Çocuk</p>
           </NavLink>
-
-          <MenuItem>Premium Vintage</MenuItem>
-        </Center>
-        <Right>
+          <p className="nav-item">Premium Vintage</p>
+        </div>
+        <div className="d-flex">
           {!user && (
             <Link
               style={{ textDecoration: "none", color: "black" }}
               to="/register"
             >
-              <MenuItem>ÜYE OL</MenuItem>
+              <span className="nav-item">ÜYE OL</span>
             </Link>
           )}
 
           {user ? (
-            <MenuItem onClick={handleClick}>ÇIKIŞ YAP</MenuItem>
+            <span className="nav-item" onClick={handleClick}>
+              ÇIKIŞ YAP
+            </span>
           ) : (
             <Link
               style={{ textDecoration: "none", color: "black" }}
               to="/login"
             >
-              <MenuItem>GİRİŞ YAP</MenuItem>
+              <p className="nav-item">GİRİŞ YAP</p>
             </Link>
           )}
-          <MenuItem>
-            <FavoriteBorderIcon />
-          </MenuItem>
-          <MenuItem>
-            <Link style={{ textDecoration: "none", color: "black" }} to="/cart">
-              <Badge  color="primary">
-                <ShoppingCartOutlined />
-              </Badge>
-            </Link>
-          </MenuItem>
-        </Right>
-      </Wrapper>
-    </Container>
+
+          <FavoriteBorderIcon className="nav-item" />
+
+          <Link style={{ textDecoration: "none", color: "black" }} to="/cart">
+            <Badge color="primary"> 
+              <ShoppingCartOutlined className="nav-item"/>
+            </Badge>
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 };
 

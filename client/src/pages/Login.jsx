@@ -50,11 +50,10 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
-  &disabled:{
-    color:green;
+  &disabled: {
+    color: green;
     cursor: not-allowed;
   }
-  
 `;
 
 const Link = styled.a`
@@ -70,22 +69,21 @@ const Error = styled.span`
 
 const Success = styled.span`
   color: green;
-`
+`;
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const {isFetching,error,currentUser} = useSelector((state)=>state.user);
+  const { isFetching, error, currentUser } = useSelector((state) => state.user);
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
     login(dispatch, { username, password });
   };
   return (
     <Container>
       <Wrapper>
-        {currentUser&& <Success>Başarı şekilde giriş yaptınız.</Success>}
+        {currentUser && <Success>Başarı şekilde giriş yaptınız.</Success>}
         <Title>Giriş Yap</Title>
         <Form>
           <Input
@@ -97,8 +95,10 @@ const Login = () => {
             placeholder="şifre"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleClick} disabled={isFetching}>GİRİŞ YAP</Button>
-          { error && <Error>Kullanıcı adı veya şifre yanlış</Error>}
+          <Button onClick={handleClick} disabled={isFetching}>
+            GİRİŞ YAP
+          </Button>
+          {error && <Error>Kullanıcı adı veya şifre yanlış</Error>}
           <Link>Şifremi Unuttum</Link>
           <Link>Üye Ol </Link>
         </Form>

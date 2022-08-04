@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+
 import Product from "./Product";
 import axios from "axios";
 
-const Container = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
+
 
 const HomeProducts = () => {
   const [products, setProducts] = useState([]);
@@ -25,11 +20,11 @@ const HomeProducts = () => {
   }, []);
 
   return (
-    <Container>
+    <div className="row m-2">
       {products.slice(0,4).map((item)=>(
         <Product item={item}/>
       )) }
-    </Container>
+    </div>
   );
 };
 

@@ -42,7 +42,7 @@ const CartProduct = ({ product, setProductQuantity, setTotal }) => {
     <>
       <div className=" d-flex justify-content-between mb-3">
         <div className="d-flex product-info">
-          <img className="img img-fluid" src={product.img} />
+          <img alt="" className="img img-fluid" src={product.img} />
           <div className="d-flex flex-column justify-content-center p-3">
             <div className="d-flex m-1">
               <p>

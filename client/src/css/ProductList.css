@@ -1,0 +1,16 @@
+.filter-text {
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 20px;
+}
+
+select {
+    border: 1px solid lightgrey;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+select:active {
+    border:none;
+}
+

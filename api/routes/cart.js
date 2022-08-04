@@ -19,7 +19,7 @@ router.post("/cart", verifyToken, async (req, res) => {
     if (err) return res.status(401).json("token is not valid!");
     return user.id;
   });
-  console.log(userId)
+  console.log(token)
 
   try {
     let cart = await Cart.findOne({ userId });
