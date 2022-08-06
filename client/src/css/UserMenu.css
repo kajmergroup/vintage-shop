@@ -1,0 +1,31 @@
+.menu-title {
+    font-size: 24px;
+}
+
+.menu-icon {
+    width: 10px;
+   
+    color: #A2B5BB;
+}
+
+.menu-link {
+    cursor: pointer;
+    width: 180px;
+    padding: 5px;
+    
+}
+
+.menu-text {
+    color: #333;
+    max-width: 160px;
+    font-size: 14px;
+}
+
+.menu-link:hover{
+    border-radius: 5px;
+    border: 1px solid #F5EDDC;
+    background: #F5EDDC;
+}
+.menu-link:hover .menu-icon {
+    color: #EB1D36;
+}

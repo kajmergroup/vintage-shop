@@ -1,0 +1,102 @@
+.info-wrapper {
+    margin-top: 10px;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+}
+.info-header {
+    margin-bottom:10px;
+    padding:10px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    
+}
+.info-header-text {
+    color: #333;
+    font-weight: bold;
+    font-size: 20px;
+}
+.info-email {
+    padding: 10px;
+    background: #C1F4C5;
+}
+.info-email i {
+    color: #65C18C;
+    margin-right: 5px;
+}
+.info-email span {
+    font-size: 14px;
+    font-weight: bold;
+}
+.info-email button {
+    color: #fff;
+    font-weight: bold;
+    padding: 5px;
+    font-size: 12px;
+    background: #65C18C ;
+    border: none;
+    border-radius: 6px;
+}
+.info-email button:hover {
+    background: #2B7A0B;
+}
+.info-update {
+    width: 50%;
+    padding: 20px;
+}
+.input-1 {
+    width: 100%;
+    margin-right: 10px;
+}
+.info-update input {
+    font-size: 12px;
+    height: 34px;
+}
+.info-update input:focus {
+    outline: none;
+}
+.info-2 select {
+    height: 34px;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    width: 33.33%;
+}
+.info-3 input {
+
+    margin-right: 5px;
+    height: 18px;
+}
+.info-3 span {
+    font-size: 14px;
+}
+.button-2 {
+    height: 34px;
+    margin-top: 15px;
+    background: #EB1D36;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+}
+.button-2:hover {
+    filter: brightness(110%);
+}
+.button-2:focus {
+    outline: none;
+}
+.password-update {
+    width: 50%;
+    padding: 20px;
+}
+.password-update input {
+    font-size: 12px;
+    height: 34px;
+}
+.password-update input:focus {
+    outline: none;
+}
+.space {
+    height: 420px;
+    width: 1px;
+    background: lightgray;
+}

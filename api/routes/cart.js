@@ -15,13 +15,14 @@ router.post("/cart", verifyToken, async (req, res) => {
   const { productId, quantity, name, price, color, size, img } = req.body;
   const token = req.headers.token.split(" ")[1];
 
-  const userId = jwt.verify(token, process.env.JWT_SEC, (err, user) => {
-    if (err) return res.status(401).json("token is not valid!");
-    return user.id;
-  });
-  console.log(token)
+  
 
   try {
+    const userId =   jwt.verify(token, process.env.JWT_SEC, (err, user) => {
+      if (err) return res.status(401).json("token is not valid!");
+      return user.id;
+    });
+    console.log(userId)
     let cart = await Cart.findOne({ userId });
     
 

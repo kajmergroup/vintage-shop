@@ -3,25 +3,18 @@ import { ShoppingCartOutlined } from "@material-ui/icons";
 import { Link, NavLink } from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
-import cookie from 'react-cookies'
 
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/apiCalls";
 import "../css/Navbar.css";
-import axios from "axios";
-
-
+import { userRequest } from "../requestMethods";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
 
-
-
-
-
-  const handleClick = async  (e) => {
-    await axios.get('http://localhost:5000/api/auth/logout')
+  const handleClick = async (e) => {
+    localStorage.clear();
     logout(dispatch);
   };
 
@@ -85,12 +78,43 @@ const Navbar = () => {
               <p className="nav-item">GİRİŞ YAP</p>
             </Link>
           )}
-
+          {user && (
+            <span className="mr-3 user-icon ">
+              <Link
+                style={{ textDecoration: "none", color: "black" }}
+                to="/profile"
+              >
+                <i class="fa-regular fa-user fa-lg"></i>
+              </Link>
+              <div className="dropdown">
+                <div className="dropdown-content">
+                <Link
+                style={{ textDecoration: "none", color: "black" }}
+                to="/profile/orders"
+              >
+                  <span className="dropdown-item">Siparişlerim</span>
+                  </Link>
+                  <Link
+                style={{ textDecoration: "none", color: "black" }}
+                to="/profile/informations"
+              >
+                  <span className="dropdown-item">Kişisel Bilgilerim</span>
+                  </Link>
+                  <Link
+                style={{ textDecoration: "none", color: "black" }}
+                to="/profile/assessments"
+              >
+                  <span className="dropdown-item">Ürün Değerlendirmelerim</span>
+                  </Link>
+                </div>
+              </div>
+            </span>
+          )}
           <FavoriteBorderIcon className="nav-item" />
 
           <Link style={{ textDecoration: "none", color: "black" }} to="/cart">
-            <Badge color="primary"> 
-              <ShoppingCartOutlined className="nav-item"/>
+            <Badge color="primary">
+              <ShoppingCartOutlined className="nav-item" />
             </Badge>
           </Link>
         </div>

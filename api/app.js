@@ -10,6 +10,8 @@ const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
 var cookieParser = require("cookie-parser");
 
+app.use(express.json());
+app.use(cookieParser());
 dotenv.config();
 app.use(
   cors({
@@ -17,8 +19,8 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
-app.use(express.json());
-app.use(cookieParser());
+
+
 
 mongoose
   .connect(process.env.MONGO_URL)
