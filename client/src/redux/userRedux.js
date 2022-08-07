@@ -1,3 +1,4 @@
+import { ReplayOutlined } from "@material-ui/icons";
 import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
@@ -14,6 +15,8 @@ const userSlice = createSlice({
     loginSuccess:(state,action)=>{
       state.isFetching=false;
       state.currentUser=action.payload
+      window.localStorage.setItem('token',action.payload.accessToken)
+      window.location.reload()
     },
     loginFailure:(state)=>{
       state.isFetching=false;
@@ -21,6 +24,7 @@ const userSlice = createSlice({
     },
     logOut:(state) => {
       state.currentUser= null;
+      window.localStorage.removeItem('token')
     }
   },
 });

@@ -42,12 +42,12 @@ const Cart = () => {
           </div>
           <div className="d-flex justify-content-between">
             <div className="col-9">
-              {products.map((product) => (
+              {products ? products.map((product) => (
                 <CartProduct
                   product={product}
                   setProductQuantity={setProductQuantity}
                 />
-              ))}
+              )) : <div>CART EMPTY</div>}
             </div>
             <div className="d-flex flex-column col-3">
               <Link to="/address" style={{ textDecoration: "none" }}>

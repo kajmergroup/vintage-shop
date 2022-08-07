@@ -1,0 +1,5 @@
+{"level":"info","message":"log from login endpoint wrong username","service":"user-service","timestamp":"2022-08-07T20:34:42.676Z"}
+{"level":"info","message":"log from login endpoint wrong username","service":"user-service","timestamp":"2022-08-07T20:34:56.380Z"}
+{"level":"info","message":"log from login endpoint","service":"user-service","timestamp":"2022-08-07T20:37:01.903Z"}
+{"level":"info","message":"log from login endpoint success","service":"user-service","timestamp":"2022-08-07T20:38:05.787Z"}
+{"level":"info","message":"log from login endpoint logout","service":"user-service","timestamp":"2022-08-07T20:38:15.832Z"}

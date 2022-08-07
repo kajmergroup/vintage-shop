@@ -17,6 +17,7 @@ import User from "./pages/User";
 import UserOrders from "./pages/UserOrdersPage";
 import UserAssessments from "./pages/UserAssessments"
 import UserInformationPage from "./pages/UserInformationPage"
+import UserLastViews from "./pages/UserLastViewsPage"
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/profile/orders" element={<UserOrders/>}/>
         <Route path="/profile/assessments" element={<UserAssessments/>}/>
         <Route path="/profile/informations" element={<UserInformationPage/>}/>
+        <Route path="/profile/lastviews" element={<UserLastViews/>}/>
          
       </Routes>
     </Router>

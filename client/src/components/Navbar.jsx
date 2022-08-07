@@ -13,9 +13,9 @@ const Navbar = () => {
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
 
-  const handleClick = async (e) => {
-    localStorage.clear();
+  const handleClick = async () => {
     logout(dispatch);
+    userRequest.get("auth/logout")
   };
 
   return (
@@ -88,23 +88,25 @@ const Navbar = () => {
               </Link>
               <div className="dropdown">
                 <div className="dropdown-content">
-                <Link
-                style={{ textDecoration: "none", color: "black" }}
-                to="/profile/orders"
-              >
-                  <span className="dropdown-item">Siparişlerim</span>
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to="/profile/orders"
+                  >
+                    <span className="dropdown-item">Siparişlerim</span>
                   </Link>
                   <Link
-                style={{ textDecoration: "none", color: "black" }}
-                to="/profile/informations"
-              >
-                  <span className="dropdown-item">Kişisel Bilgilerim</span>
+                    style={{ textDecoration: "none", color: "black" }}
+                    to="/profile/informations"
+                  >
+                    <span className="dropdown-item">Kişisel Bilgilerim</span>
                   </Link>
                   <Link
-                style={{ textDecoration: "none", color: "black" }}
-                to="/profile/assessments"
-              >
-                  <span className="dropdown-item">Ürün Değerlendirmelerim</span>
+                    style={{ textDecoration: "none", color: "black" }}
+                    to="/profile/assessments"
+                  >
+                    <span className="dropdown-item">
+                      Ürün Değerlendirmelerim
+                    </span>
                   </Link>
                 </div>
               </div>

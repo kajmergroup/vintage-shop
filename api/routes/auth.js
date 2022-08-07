@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
-
+const logger = require("../logger");
 // REGISTER
 
 router.post("/register", async (req, res) => {
@@ -33,6 +33,7 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
     if (!user) {
+      logger.info("log from login endpoint wrong username");
       res.status(401).json("Wrong username!");
     } else {
       const hashedPassword = CryptoJS.AES.decrypt(
@@ -40,10 +41,9 @@ router.post("/login", async (req, res) => {
         process.env.PASS_SEC
       );
       const Orgpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-      if (
-        Orgpassword !== req.body.password &&
-        res.status(401).json("Wrong pass!")
-      ) {
+      if (Orgpassword !== req.body.password) {
+        res.status(401).json("Wrong pass!");
+        logger.info("log from login endpoint wrong username");
       } else {
         const accessToken = jwt.sign(
           {
@@ -53,23 +53,21 @@ router.post("/login", async (req, res) => {
           process.env.JWT_SEC,
           { expiresIn: "1d" }
         );
-
+        logger.info("log from login endpoint success");
         const { password, ...others } = user._doc;
-        
-        res.status(200).json({ ...others, accessToken })
-        
+
+        res.status(200).json({ ...others, accessToken });
       }
     }
   } catch (err) {
+    logger.error('error from login endpoint')
     res.status(500).json(err);
   }
 });
 
-
-router.get('/logout',(req,res)=>{
-  res.clearCookie('access-token')
-  res.end()
-})
-
+router.get("/logout", (req, res) => {
+  logger.info('log from login endpoint logout')
+ res.status(200).json('success logout')
+});
 
 module.exports = router;

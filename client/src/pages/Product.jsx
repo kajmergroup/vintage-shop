@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest, userRequest } from "../requestMethods";
 
-
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -133,7 +132,6 @@ const Product = () => {
   const price = product.price;
   const img = product.img;
 
-  
   const handleAddCart = async (e) => {
     e.preventDefault();
     const newCart = {
@@ -159,7 +157,6 @@ const Product = () => {
     }
   };
 
-
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -169,6 +166,26 @@ const Product = () => {
     };
     getProduct();
   }, [id]);
+
+  const Lastview = async () => {
+    const data = {
+      products: [
+        {
+          productId,
+          name,
+          price,
+          img,
+        },
+      ],
+    };
+    await userRequest.post("lastviews", data);
+  };
+  setTimeout(() => {
+    if (product.title) {
+      Lastview();
+    }
+  }, "3000");
+
   return (
     <Container>
       <Navbar />

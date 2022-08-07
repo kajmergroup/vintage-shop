@@ -8,7 +8,9 @@ const userRoute = require("./routes/user");
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
+const lastviewsRoute = require("./routes/lastview");
 var cookieParser = require("cookie-parser");
+const logger = require("./logger");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -20,8 +22,6 @@ app.use(
   })
 );
 
-
-
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log("DB Connection Successfull!"))
@@ -29,11 +29,19 @@ mongoose
     console.log(err);
   });
 
+
+
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
+app.use("/api/lastviews", lastviewsRoute);
+
+// logger.info('text info')
+// logger.warn('text warn')
+// logger.debug('text debug ')
+// logger.error(new Error('something went wrong'))
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Server is running!");

@@ -10,7 +10,7 @@ const ProductColor = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-const CartProduct = ({ product, setProductQuantity, setTotal }) => {
+const CartProduct = ({ product, setProductQuantity }) => {
   const id = product.productId;
 
   const deleteProduct = async () => {
@@ -75,7 +75,7 @@ const CartProduct = ({ product, setProductQuantity, setTotal }) => {
           </div>
         </div>
       </div>
-        <hr className="space"/>
+        <hr className="space1"/>
       
       
     </>
