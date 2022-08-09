@@ -2,6 +2,7 @@ const Order = require("../models/Order");
 const Cart = require("../models/Cart");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const logger = require("../logger");
 const {
   verifyToken,
   verifyTokenAndAuthorization,
@@ -31,6 +32,7 @@ router.post("/",  async (req, res) => {
 
   try {
     const savedOrder = await newOrder.save();
+    logger.child({userId:userId}).info('Order "1234" was processed succesffully')
     res.status(200).json(savedOrder);
   } catch (err) {
     res.status(500).json(err);

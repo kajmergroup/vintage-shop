@@ -10,26 +10,24 @@ import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import { useEffect } from "react";
 import { userRequest } from "../requestMethods";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 const Address = () => {
   const user = useSelector((state) => state.user.currentUser);
   const id = user._id;
-  
+
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const [display, setDisplay] = useState("none");
   const [see, setSee] = useState("block");
   const [address, setAddress] = useState([]);
-  
 
-  useEffect( () => {
-    const fetchData = async() =>{
+  useEffect(() => {
+    const fetchData = async () => {
       const res = await userRequest.get("users/find/" + id);
       setAddress(res.data.address);
-    }
+    };
     fetchData();
-     
   }, [id]);
 
   const handleClick = () => {
@@ -41,16 +39,15 @@ const Address = () => {
     setSee("block");
   };
 
-
   const createOrder = () => {
-    userRequest.post("orders")
-  }
+    userRequest.post("orders");
+  };
 
   return (
     <>
       <div className="container">
         <Link to="/">
-        <div className="payment-header">BCH.</div>
+          <div className="payment-header">BCH.</div>
         </Link>
       </div>
       <main id="address">
@@ -80,44 +77,43 @@ const Address = () => {
               </div>
             </div>
             <div className="address-wrapper">
+              <h5 className="pl-3 pt-3">Teslimat Adresi</h5>
               <div style={{ display: see }}>
-                <div className="header mb-4">Teslimat Adresi</div>
-                <div className="d-flex justify-content-between">
-                  <div
-                    className="address-box mr-3 d-flex flex-column align-items-center justify-content-center"
-                    onClick={handleShow}
-                  >
-                    <div>
-                      <AddIcon />
-                    </div>
-                    <span>Yeni Adres Ekle</span>
+                <div className="shipping-addresses ">
+                  <div onClick={handleShow} className="address-box">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Yeni Adres Ekle </span>
                   </div>
                   {address.map((address) => (
-                    <div className="address-box d-flex flex-column p-3">
-                      <div className="d-flex justify-content-between m-1">
-                        <div className="d-flex">
-                          <div>
-                            <PersonIcon />
-                          </div>
-                          <span>
-                            {user.first_name} {user.last_name}
-                          </span>
+                    <div className="address-box1">
+                      <div className="box-head">
+                        <div className="radio-unselected">
+                          <input type="radio" />
+                          <label>{address.address_title}</label>
                         </div>
-                        <div className="d-flex">
-                          <div>
-                            <PhoneIphoneIcon />
-                          </div>
-                          <span>{address.phone}</span>
-                        </div>
+                        <span>Düzenle</span>
                       </div>
-                      <div className="d-flex flex-column m-2">
-                        <span>{address.address_line}</span>
-                        <span>{address.city}/{address.town}</span>
+                      <div className="box-content">
+                        <div className="content-head">
+                          <div className="content-name">
+                            <i class="fa-solid fa-user"></i>
+                            <span>{user.first_name} {user.last_name}</span>
+                          </div>
+                          <div className="content-phone">
+                            <i class="fa-solid fa-mobile"></i>
+                            <span>0543 521 35 80</span>
+                          </div>
+                        </div>
+                        <div className="content-address">
+                          <p>{address.address_line}</p>
+                          <p>{address.town}/{address.city}</p>
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
+
               <div style={{ display: display }}>
                 <div className="payment-box d-flex flex-column mt-5">
                   <div className="d-flex justify-content-between">
@@ -177,7 +173,9 @@ const Address = () => {
                 <p>189 TL</p>
               </div>
               <div>
-                <button onClick={createOrder} className="submit">Kaydet ve Devam Et</button>
+                <button onClick={createOrder} className="submit">
+                  Kaydet ve Devam Et
+                </button>
               </div>
             </div>
           </div>

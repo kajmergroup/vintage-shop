@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const http = require("http").Server(app);
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
@@ -11,6 +12,8 @@ const orderRoute = require("./routes/order");
 const lastviewsRoute = require("./routes/lastview");
 var cookieParser = require("cookie-parser");
 const logger = require("./logger");
+
+
 
 app.use(express.json());
 app.use(cookieParser());
@@ -29,8 +32,6 @@ mongoose
     console.log(err);
   });
 
-
-
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
@@ -42,7 +43,9 @@ app.use("/api/lastviews", lastviewsRoute);
 // logger.warn('text warn')
 // logger.debug('text debug ')
 // logger.error(new Error('something went wrong'))
+//Whenever someone connects this gets executed
 
-app.listen(process.env.PORT || 5000, () => {
+http.listen(process.env.PORT || 5000, () => {
+  logger.info("Server is running");
   console.log("Server is running!");
 });

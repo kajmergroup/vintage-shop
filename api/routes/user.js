@@ -6,10 +6,17 @@ const {
 } = require("./verifyToken");
 
 const router = require("express").Router();
+const jwt = require("jsonwebtoken");
 
 // UPDATE USER
 
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
+  
+  const token = req.headers.token.split(" ")[1];
+  const userId = jwt.verify(token, process.env.JWT_SEC, (err, user) => {
+    if (err) return res.status(401).json("token is not valid!");
+    return user.id;
+  });
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,

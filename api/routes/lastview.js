@@ -19,7 +19,7 @@ router.post("/", verifyToken, async (req, res) => {
   const name = products[0].name;
   const price = products[0].price;
   const img = products[0].img;
-  console.log(name)
+  
   const userId = jwt.verify(token, process.env.JWT_SEC, (err, user) => {
     if (err) return res.status(401).json("token is not valid!");
     return user.id;
@@ -31,7 +31,7 @@ router.post("/", verifyToken, async (req, res) => {
       let itemIndex = lastview.products.findIndex(
         (p) => p.productId == productId
       );
-      console.log(itemIndex)
+      
       if (itemIndex == -1) {
         lastview.products.push({
           productId,

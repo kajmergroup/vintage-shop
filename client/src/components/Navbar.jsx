@@ -15,7 +15,7 @@ const Navbar = () => {
 
   const handleClick = async () => {
     logout(dispatch);
-    userRequest.get("auth/logout")
+    userRequest.get("auth/logout");
   };
 
   return (
@@ -67,9 +67,11 @@ const Navbar = () => {
           )}
 
           {user ? (
-            <span className="nav-item" onClick={handleClick}>
-              ÇIKIŞ YAP
-            </span>
+            <Link style={{ textDecoration: "none", color: "black" }} to="/">
+              <p className="nav-item" onClick={handleClick}>
+                ÇIKIŞ YAP
+              </p>
+            </Link>
           ) : (
             <Link
               style={{ textDecoration: "none", color: "black" }}

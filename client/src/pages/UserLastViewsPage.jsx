@@ -8,7 +8,7 @@ import { userRequest } from "../requestMethods";
 
 const UserLastViewsPage = () => {
   const [products, setProducts] = useState([]);
-
+  
   useEffect(() => {
     const getLastview = async () => {
       try {
@@ -43,7 +43,7 @@ const UserLastViewsPage = () => {
               <div className="last-views-wrapper">
                 <div className="last-views-list ">
                   {products.map((product) => (
-                    <UserLastViews product={product} />
+                    <UserLastViews product={product}  />
                   ))}
                 </div>
               </div>

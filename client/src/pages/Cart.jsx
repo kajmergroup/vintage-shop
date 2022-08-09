@@ -49,7 +49,7 @@ const Cart = () => {
                 />
               )) : <div>CART EMPTY</div>}
             </div>
-            <div className="d-flex flex-column col-3">
+            <div className="d-flex flex-column col-3 align-items-center">
               <Link to="/address" style={{ textDecoration: "none" }}>
                 <button className="btn accept-buton mb-3">SEPETİ ONAYLA</button>
               </Link>

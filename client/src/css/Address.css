@@ -75,12 +75,24 @@ textarea {
     color: teal;
 }
 .address-box {
+    margin-right: 10px;
     cursor:pointer;
-    width: 500px;
-    height: 150px;
+    width: 300px;
+    height: 110px;
     border-radius: 6px;
     border: 1px solid #e6e6e6;
     background-color: #fafafa;
+    flex-direction: column;
+    display: flex;
+    margin-bottom: 20px;
+    transition: 0.3s ease-in;
+    box-sizing: border-box;
+    margin-top: 35px;
+    align-items: center;
+    justify-content: center;
+}
+.address-box span {
+    font-size: 12px;
 }
 .address-wrapper{
     border-radius: 6px;
@@ -138,4 +150,97 @@ textarea {
     height: 1px;
     width: 100%;
     background: black;
+}
+.address-title input {
+cursor: pointer;
+
+}
+.shipping-addresses {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 50px;
+    box-sizing: border-box;
+    align-self: flex-start;
+}
+.address-box1 {
+    width: 300px;
+    position: relative;
+}
+.box-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+}
+.radio-unselected{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    width: 100%;
+}
+.radio-unselected input {
+    width: 12px;
+    margin-right: 5px;
+}
+.radio-unselected label {
+    padding-top: 3px;
+    font-size: 12px;
+}
+.box-content {
+    margin: 5px 0 20px 0;
+    height: 110px;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    background-color: #fafafa;
+    transition: 0.3s ease-in;
+    position: relative;
+}
+.content-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #333;
+    font-weight: 600;
+}
+
+.box-head span {
+    font-size: 12px;
+    border-bottom: 1px;
+}
+.content-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fa-user {
+    margin-right: 5px;
+    padding-bottom: 3px;
+}
+.content-phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fa-mobile {
+    margin-right: 5px;
+    padding-bottom: 3px;
+}
+.content-address {
+    font-size: 12px;
+    color: #333;
+    margin-top: 5px;
+    line-height: 24px;
+}
+.content-address p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

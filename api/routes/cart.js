@@ -6,7 +6,6 @@ const {
 } = require("./verifyToken");
 const jwt = require("jsonwebtoken");
 
-
 const router = require("express").Router();
 
 //CREATE CART
@@ -19,7 +18,7 @@ router.post("/cart", verifyToken, async (req, res) => {
       if (err) return res.status(401).json("token is not valid!");
       return user.id;
     });
-    console.log(userId);
+
     let cart = await Cart.findOne({ userId });
 
     if (cart) {
@@ -74,7 +73,7 @@ router.post("/cart", verifyToken, async (req, res) => {
 //GET CART
 router.get("/find/:userId", async (req, res) => {
   const userId = req.params.userId;
-  console.log(userId);
+
   try {
     const cart = await Cart.findOne({ userId });
     res.status(200).json(cart.products);
@@ -93,8 +92,8 @@ router.delete(
     const userId = jwt.verify(token, process.env.JWT_SEC, (err, user) => {
       return user.id;
     });
-    const filter = {userId: userId }
-    console.log(userId)
+    const filter = { userId: userId };
+
     const cart = await Cart.findOne({ userId });
     const itemIndex = cart.products.findIndex((p) => p.productId == prodId);
     const product = cart.products[itemIndex];
@@ -105,9 +104,9 @@ router.delete(
       const updatedCart = await Cart.findOneAndUpdate(filter, {
         $pull: { products: { productId: prodId } },
         $set: { cartTotal: dpnd },
-        new:true
+        new: true,
       });
-      console.log(updatedCart)
+
       res.status(200).json(updatedCart);
     } catch (err) {
       res.status(500).json(err);

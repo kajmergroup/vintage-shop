@@ -4,6 +4,7 @@ import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
 
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -83,7 +84,6 @@ const Login = () => {
   return (
     <Container>
       <Wrapper>
-        {currentUser && <Success>Başarı şekilde giriş yaptınız.</Success>}
         <Title>Giriş Yap</Title>
         <Form>
           <Input
@@ -98,11 +98,13 @@ const Login = () => {
           <Button onClick={handleClick} disabled={isFetching}>
             GİRİŞ YAP
           </Button>
-          {error && <Error>Kullanıcı adı veya şifre yanlış</Error>}
+
           <Link>Şifremi Unuttum</Link>
           <Link>Üye Ol </Link>
         </Form>
       </Wrapper>
+
+      
     </Container>
   );
 };
