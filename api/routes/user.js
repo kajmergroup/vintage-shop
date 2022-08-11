@@ -10,6 +10,15 @@ const jwt = require("jsonwebtoken");
 
 // UPDATE USER
 
+
+
+
+router.post("/", async (req,res) => {
+  
+})
+
+
+
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   
   const token = req.headers.token.split(" ")[1];

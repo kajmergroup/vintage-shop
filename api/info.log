@@ -147,3 +147,54 @@
 {"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-09T18:56:05.091Z"}
 {"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-09T18:56:28.538Z"}
 {"level":"info","message":"log from login endpoint success","service":"user-service","timestamp":"2022-08-09T19:02:27.300Z"}
+{"level":"info","message":"log from login endpoint logout","service":"user-service","timestamp":"2022-08-09T20:44:31.992Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-09T20:44:35.931Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-09T21:02:39.012Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-09T21:10:41.626Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-09T21:11:46.389Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-09T21:11:48.673Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-09T21:12:42.580Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-09T21:12:44.342Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-09T21:12:53.628Z"}
+{"level":"info","message":"success:true from verify endpoint","service":"user-service","timestamp":"2022-08-09T21:12:54.878Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-09T21:13:29.745Z"}
+{"level":"info","message":"success:true from verify endpoint","service":"user-service","timestamp":"2022-08-09T21:13:42.775Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-09T21:13:49.570Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-10T12:23:43.238Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-10T12:25:35.452Z"}
+{"level":"info","message":"log from login endpoint success","service":"user-service","timestamp":"2022-08-10T12:25:52.287Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-10T12:42:55.188Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-10T14:48:44.537Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-10T14:50:30.134Z"}
+{"level":"info","message":"success:false from register endpoint","service":"user-service","timestamp":"2022-08-10T14:50:57.692Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-10T14:55:28.971Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-10T14:55:32.657Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-10T14:58:32.645Z"}
+{"level":"info","message":"success:false from register endpoint","service":"user-service","timestamp":"2022-08-10T14:58:52.008Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-10T15:00:34.403Z"}
+{"level":"info","message":"success:true from verify endpoint","service":"user-service","timestamp":"2022-08-10T15:01:41.230Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-10T15:03:09.121Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-10T15:05:12.921Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-10T15:05:37.671Z"}
+{"level":"info","message":"success:false from register endpoint","service":"user-service","timestamp":"2022-08-10T15:06:03.434Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-10T15:06:58.569Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-10T15:07:39.708Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-10T15:07:45.472Z"}
+{"level":"info","message":"success:true from register endpoint","service":"user-service","timestamp":"2022-08-10T15:07:55.181Z"}
+{"level":"info","message":"success:true from verify endpoint","service":"user-service","timestamp":"2022-08-10T15:08:21.829Z"}
+{"level":"info","message":"success:true from register endpoint","service":"user-service","timestamp":"2022-08-10T15:08:35.674Z"}
+{"level":"info","message":"log from login endpoint success","service":"user-service","timestamp":"2022-08-10T15:10:00.863Z"}
+{"level":"info","message":"log from login endpoint logout","service":"user-service","timestamp":"2022-08-10T15:10:11.848Z"}
+{"level":"info","message":"log from login endpoint success","service":"user-service","timestamp":"2022-08-10T15:10:43.349Z"}
+{"level":"info","message":"Order \"1234\" was processed succesffully","service":"user-service","timestamp":"2022-08-10T15:10:52.892Z","userId":"62e82c050b7e900b1ed9be22"}
+{"level":"info","message":"log from login endpoint logout","service":"user-service","timestamp":"2022-08-10T15:18:18.574Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-10T15:29:29.946Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-10T15:30:35.915Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-10T15:32:05.753Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-10T15:34:10.021Z"}
+{"level":"info","message":"success:false from verify endpoint","service":"user-service","timestamp":"2022-08-10T15:41:50.898Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-10T23:03:58.950Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-10T23:04:40.391Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T00:19:14.285Z"}
+{"level":"info","message":"log from login endpoint success","service":"user-service","timestamp":"2022-08-11T00:20:45.802Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T00:22:27.591Z"}

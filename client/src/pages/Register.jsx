@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import { Modal } from "react-bootstrap";
 import "../css/Register.css";
 import { useState } from "react";
 import { publicRequest } from "../requestMethods";
@@ -61,24 +60,30 @@ const Button = styled.button`
 `;
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [last_name, setLast_name] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+
+
   const [show, setShow] = useState("none");
   const [time, setTime] = useState();
   const [input, setInput] = useState();
-  const [input1, setInput1] = useState();
-  const [input2, setInput2] = useState();
-  const [input3, setInput3] = useState();
-  const [input4, setInput4] = useState();
-  const [input5, setInput5] = useState();
-  const inpt = input + input1 + input2 + input3 + input4 + input5;
-  const code = parseInt(inpt);
-  // console.log(input + input1 + input2 + input3 + input4 + input5)
+  // const code = parseInt(inpt);
+  
+  const [user, setUser] = useState({
+    email: "",
+    name: "",
+    last_name: "",
+    username: "",
+    password: "",
+    code:"",
+  });
+  console.log(user)
+
+
+  const handleChange = (e) => {
+    setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const handleShow = async (e) => {
+    const email = user.email;
     try {
       e.preventDefault();
       setShow("block");
@@ -87,17 +92,9 @@ const Register = () => {
     } catch (err) {}
   };
   const handleRegister = async (e) => {
-    const data = {
-      email,
-      name,
-      last_name,
-      username,
-      password,
-      code,
-    };
     try {
       e.preventDefault();
-      publicRequest.post("auth/register", data);
+      publicRequest.post("auth/register", user , );
     } catch (err) {}
   };
   const handleClose = (e) => {
@@ -123,26 +120,23 @@ const Register = () => {
         <Wrapper>
           <Title>Üye Ol </Title>
           <Form>
+            <Input name="name" placeholder="adınız" onChange={handleChange} />
             <Input
-              placeholder="adınız"
-              onChange={(e) => setName(e.target.value)}
-            />
-            <Input
+              name="last_name"
               placeholder="soyadınız"
-              onChange={(e) => setLast_name(e.target.value)}
+              onChange={handleChange}
             />
             <Input
+              name="username"
               placeholder="kullanıcı adı"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={handleChange}
             />
+            <Input name="email" placeholder="email" onChange={handleChange} />
             <Input
-              placeholder="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
+              name="password"
               type="password"
               placeholder="şifre"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleChange}
             />
             <Agreement>
               Üye Ol'a basarak <b>Üyelik Koşulları</b>nı Kabul Ediyorum.
@@ -157,64 +151,21 @@ const Register = () => {
           <div className="d-flex flex-column justify-content-center align-items-center auth-wrapper">
             <h5 className="auth-head">E-POSTA DOĞRULAMA</h5>
 
-            <label>(lütfen {email} adresine gelen kodu giriniz) </label>
+            <label>(lütfen {user.email} adresine gelen kodu giriniz) </label>
             <div>
               <label>Doğrulama Kodu ({time})</label>
               <div className="d-flex justify-content-center aligns-item-center auth-input">
                 <input
-                  maxLength="1"
-                  size="1"
+                  name="code"
+                  maxLength="6"
+                  size="6"
                   min="0"
                   max="9"
                   pattern="\d"
                   type="text"
-                  onChange={(e) => setInput(e.target.value)}
+                  onChange={handleChange}
                 />
-                <input
-                  maxLength="1"
-                  size="1"
-                  min="0"
-                  max="9"
-                  pattern="\d"
-                  type="text"
-                  onChange={(e) => setInput1(e.target.value)}
-                />
-                <input
-                  maxLength="1"
-                  size="1"
-                  min="0"
-                  max="9"
-                  pattern="\d"
-                  type="text"
-                  onChange={(e) => setInput2(e.target.value)}
-                />
-                <input
-                  maxLength="1"
-                  size="1"
-                  min="0"
-                  max="9"
-                  pattern="\d"
-                  type="text"
-                  onChange={(e) => setInput3(e.target.value)}
-                />
-                <input
-                  maxLength="1"
-                  size="1"
-                  min="0"
-                  max="9"
-                  pattern="\d"
-                  type="text"
-                  onChange={(e) => setInput4(e.target.value)}
-                />
-                <input
-                  maxLength="1"
-                  size="1"
-                  min="0"
-                  max="9"
-                  pattern="\d"
-                  type="text"
-                  onChange={(e) => setInput5(e.target.value)}
-                />
+                
               </div>
               <label>Lütfen Belirtilen Sürede Kodu Giriniz</label>
             </div>

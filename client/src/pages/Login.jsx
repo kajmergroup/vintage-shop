@@ -64,19 +64,13 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
-const Error = styled.span`
-  color: red;
-`;
 
-const Success = styled.span`
-  color: green;
-`;
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { isFetching, error, currentUser } = useSelector((state) => state.user);
+  const { isFetching   } = useSelector((state) => state.user);
 
   const handleClick = () => {
     login(dispatch, { username, password });

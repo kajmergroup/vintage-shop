@@ -1,4 +1,4 @@
-import { ReplayOutlined } from "@material-ui/icons";
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({

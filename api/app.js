@@ -10,18 +10,15 @@ const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
 const lastviewsRoute = require("./routes/lastview");
-var cookieParser = require("cookie-parser");
 const logger = require("./logger");
 
 
 
 app.use(express.json());
-app.use(cookieParser());
 dotenv.config();
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
   })
 );
 
