@@ -1,0 +1,46 @@
+.login-container {
+    background: #B1E1FF;
+    margin: 0;
+    height: 1329px;
+    display: flex;
+    justify-content: center;
+    .login-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .login-form {
+            background: #9C9EFE;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            height: 200px;
+            width: 400px;
+            border-radius: 6px;
+            .ty {
+                
+                display: flex;
+                flex-direction: column;
+                font-size: 12px;
+                justify-content: center;
+
+            }
+            .ty input {
+                outline: 0;
+            }
+            .ty-button {
+                cursor: pointer;
+                border-radius: 6px;
+                background: #AFB4FF;
+                border: none;
+                margin-top: 5px;
+                width: 80px;
+                height: 24px;
+                opacity: 1;
+            }
+            .ty-button:hover {
+                background: #F637EC;
+            }
+        }
+    }
+}

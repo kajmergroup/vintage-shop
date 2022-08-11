@@ -198,3 +198,43 @@
 {"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T00:19:14.285Z"}
 {"level":"info","message":"log from login endpoint success","service":"user-service","timestamp":"2022-08-11T00:20:45.802Z"}
 {"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T00:22:27.591Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:31:41.382Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:33:48.163Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:35:15.595Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:35:22.270Z"}
+{"level":"info","message":"log from login endpoint logout","service":"user-service","timestamp":"2022-08-11T11:36:33.754Z"}
+{"level":"info","message":"log from login endpoint success","service":"user-service","timestamp":"2022-08-11T11:36:38.099Z"}
+{"level":"info","message":"Order \"1234\" was processed succesffully","service":"user-service","timestamp":"2022-08-11T11:36:42.712Z","userId":"62e906664924697e4faa8141"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:41:14.983Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:41:34.175Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:41:51.338Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:43:03.594Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:43:14.600Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:43:19.257Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:44:49.716Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:44:58.736Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T11:45:10.730Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T12:02:12.901Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T12:02:50.959Z"}
+{"level":"info","message":"Order \"1234\" was processed succesffully","service":"user-service","timestamp":"2022-08-11T12:04:58.475Z","userId":"62e906664924697e4faa8141"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T12:05:36.764Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T12:08:17.840Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T12:08:33.625Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T12:09:23.648Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T12:09:39.607Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T12:09:45.924Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T12:11:33.334Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T12:12:16.805Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T12:16:32.094Z"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T13:01:51.257Z"}
+{"level":"info","message":"log from login endpoint success","service":"user-service","timestamp":"2022-08-11T14:48:42.924Z"}
+{"level":"info","message":"Order \"1234\" was processed succesffully","service":"user-service","timestamp":"2022-08-11T14:49:12.539Z","userId":"62e82c050b7e900b1ed9be22"}
+{"level":"info","message":"Order \"1234\" was processed succesffully","service":"user-service","timestamp":"2022-08-11T14:49:14.968Z","userId":"62e82c050b7e900b1ed9be22"}
+{"level":"info","message":"Order \"1234\" was processed succesffully","service":"user-service","timestamp":"2022-08-11T14:49:16.780Z","userId":"62e82c050b7e900b1ed9be22"}
+{"level":"info","message":"Order \"1234\" was processed succesffully","service":"user-service","timestamp":"2022-08-11T14:49:18.421Z","userId":"62e82c050b7e900b1ed9be22"}
+{"level":"info","message":"Order \"1234\" was processed succesffully","service":"user-service","timestamp":"2022-08-11T14:49:20.218Z","userId":"62e82c050b7e900b1ed9be22"}
+{"level":"info","message":"Order \"1234\" was processed succesffully","service":"user-service","timestamp":"2022-08-11T14:49:21.960Z","userId":"62e82c050b7e900b1ed9be22"}
+{"level":"info","message":"Order \"1234\" was processed succesffully","service":"user-service","timestamp":"2022-08-11T14:49:23.487Z","userId":"62e82c050b7e900b1ed9be22"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T14:50:40.403Z"}
+{"level":"info","message":"Order \"1234\" was processed succesffully","service":"user-service","timestamp":"2022-08-11T15:34:51.858Z","userId":"62e82c050b7e900b1ed9be22"}
+{"level":"info","message":"Server is running","service":"user-service","timestamp":"2022-08-11T17:13:39.069Z"}

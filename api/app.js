@@ -42,6 +42,10 @@ app.use("/api/lastviews", lastviewsRoute);
 // logger.error(new Error('something went wrong'))
 //Whenever someone connects this gets executed
 
+const date = new Date()
+const month = date.toLocaleString('default' , {month:'long'});
+console.log(month)
+
 http.listen(process.env.PORT || 5000, () => {
   logger.info("Server is running");
   console.log("Server is running!");
