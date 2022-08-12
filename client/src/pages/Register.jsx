@@ -75,7 +75,7 @@ const Register = () => {
     password: "",
     code:"",
   });
-  console.log(user)
+ 
 
 
   const handleChange = (e) => {
@@ -99,7 +99,7 @@ const Register = () => {
   };
   const handleClose = (e) => {
     e.preventDefault();
-    console.log(1);
+    
     setShow("none");
     setTime(0);
   };

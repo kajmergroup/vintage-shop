@@ -1,7 +1,11 @@
 .datatable {
   height: 1213px;
   padding: 20px;
-  
+  .datagrid 
+    &:focus{
+      outline: none;
+    
+  }
   .datatableTitle{
     width: 100%;
     font-size: 24px;
@@ -22,7 +26,23 @@
       cursor: pointer;
     }
   }
-
+  .desc{
+    font-size: 12px;
+    overflow: hidden;
+    white-space: pre-wrap;
+  }
+  .categories{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    .categories
+      &:focus {
+        outline: none;
+      }
+    
+  }
   .productWithImg {
     display: flex;
     align-items: center;
@@ -58,6 +78,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
+   
 
     .viewButton {
       padding: 2px 5px;
@@ -65,6 +86,7 @@
       color: darkblue;
       border: 1px dotted rgba(0, 0, 139, 0.596);
       cursor: pointer;
+  
     }
     
     .deleteButton {
@@ -73,6 +95,7 @@
       color: crimson;
       border: 1px dotted rgba(220, 20, 60, 0.6);
       cursor: pointer;
+   
     }
   }
 }

@@ -5,8 +5,31 @@ const router = require("express").Router();
 
 //CREATE
 
-router.post("/", verifyTokenAndAdmin, async (req, res) => {
-  const newProduct = new Product(req.body);
+router.post("/",  async (req, res) => {
+  
+  const title = req.body.title
+  const desc = req.body.desc
+  const categories = req.body.categories
+  const price = parseInt(req.body.price)
+  const inStock = req.body.inStock
+  const size = req.body.size
+  const color = req.body.color
+  const img = req.body.img
+  const quantity = parseInt(req.body.quantity)
+  
+  
+
+  const newProduct = new Product({
+    title:title,
+    desc:desc,
+    categories:categories,
+    price:price,
+    inStock:inStock,
+    size:size,
+    color:color,
+    quantity:quantity,
+    img:img
+})
 
   try {
     const savedProduct = await newProduct.save();

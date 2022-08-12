@@ -1,10 +1,33 @@
-import "./single.scss";
+import "./singleproduct.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import List from "../../components/table/Table";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 const SingleProduct = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:5000/api/products/find/" + id
+        );
+        setProduct(res.data);
+      } catch (err) {}
+    };
+    getProduct();
+  }, [id]);
+
+ 
+  const PF = "http://localhost:5000/images/";
+
   return (
     <div className="single">
       <Sidebar />
@@ -13,38 +36,37 @@ const SingleProduct = () => {
         <div className="top">
           <div className="left">
             <div className="editButton">Edit</div>
-            <h1 className="title">Information</h1>
+            <h1 className="title">Product Information</h1>
             <div className="item">
-              <img
-                src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                alt=""
-                className="itemImg"
-              />
+              <img src={PF + product.img} alt="" className="itemImg" />
               <div className="details">
-                <h1 className="itemTitle">Jane Doe</h1>
+                <h1 className="itemTitle"></h1>
                 <div className="detailItem">
-                  <span className="itemKey">Email:</span>
-                  <span className="itemValue">janedoe@gmail.com</span>
+                  <span className="itemKey">Description:</span>
+                  <span className="itemValue">{product.desc}</span>
+                </div>
+
+                <div className="detailItem">
+                  <span className="itemKey">Price:</span>
+                  <span className="itemValue">{product.price}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Phone:</span>
-                  <span className="itemValue">+1 2345 67 89</span>
+                  <span className="itemKey">Quantity:</span>
+                  <span className="itemValue">{product.quantity}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Address:</span>
-                  <span className="itemValue">
-                    Elton St. 234 Garden Yd. NewYork
-                  </span>
+                  <span className="itemKey">Colors:</span>
+                  <span className="itemValue">{product.color}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Country:</span>
-                  <span className="itemValue">USA</span>
+                  <span className="itemKey">Sizes:</span>
+                  <span className="itemValue">{product.size}</span>
                 </div>
               </div>
             </div>
           </div>
           <div className="right">
-            <Chart aspect={3 / 1} title="User Spending ( Last 6 Months)" />
+            <Chart aspect={3 / 1} title="Product Sales ( Last 6 Months)" />
           </div>
         </div>
         <div className="bottom">

@@ -1,22 +1,32 @@
 import "./productdatatable.scss";
+import { makeStyles } from '@material-ui/core/styles';
 import { DataGrid } from "@mui/x-data-grid";
-import { productColumns, productRows } from "../../datatablesource";
+import { productColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import  axios  from "axios";
 
+const useStyles = makeStyles({
+  root: {
+      '&.MuiDataGrid-root .MuiDataGrid-cell:focus': {
+          outline: 'none',
+      },
+  }
+});
+
 const ProductdataTable = () => {
   const [data, setData] = useState([]);
-  console.log(data)
+  const classes = useStyles();
+  
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
-
+ 
   useEffect(() => {
     const getProducts = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/products");
-        console.log(res.data)
+        
         setData(res.data)
       } catch (err) {}
     };
@@ -31,6 +41,9 @@ const ProductdataTable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
+             <Link to={`/products/${params.row._id}`} style={{ textDecoration: "none" }}>
+              <div className="viewButton">View</div>
+            </Link>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
@@ -51,7 +64,7 @@ const ProductdataTable = () => {
         </Link>
       </div>
       <DataGrid
-        className="datagrid"
+        className={classes.root}
         rows={data}
         columns={productColumns.concat(actionColumn)}
         pageSize={9}

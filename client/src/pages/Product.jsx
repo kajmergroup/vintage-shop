@@ -131,6 +131,7 @@ const Product = () => {
   const name = product.title;
   const price = product.price;
   const img = product.img;
+  const PF = "http://localhost:5000/images/"
 
   const handleAddCart = async (e) => {
     e.preventDefault();
@@ -192,7 +193,7 @@ const Product = () => {
       <div className="">
         <Wrapper>
           <ImgContainer>
-            <Image src={product.img} />
+            <Image src={ PF + product.img} />
           </ImgContainer>
           <InfoContainer>
             <Title>{product.title}</Title>

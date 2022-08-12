@@ -10,7 +10,7 @@ const Verify = require("../models/Verify");
 // SEND EMAIL
 router.post("/verify", async (req, res) => {
   const email = req.body.email;
-  console.log(req.body)
+  
 
   let verify = await Verify.findOne({ email });
   try {
@@ -36,10 +36,10 @@ router.post("/verify", async (req, res) => {
 });
 // REGISTER
 router.post("/register", async (req, res) => {
-  console.log(req.body);
+  
   const email = req.body.email;
   const code = await Verify.findOne({ email });
-  console.log(req.body.code);
+  
   try {
     if (code.code == req.body.code) {
       const newUser = new User({

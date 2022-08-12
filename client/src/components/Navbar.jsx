@@ -38,7 +38,7 @@ const Navbar = () => {
           </NavLink>
           <NavLink
             style={{ textDecoration: "none", color: "black" }}
-            to="/products/man"
+            to="/products/men"
           >
             <p className="nav-item">Erkek</p>
           </NavLink>

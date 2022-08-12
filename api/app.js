@@ -11,8 +11,9 @@ const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
 const lastviewsRoute = require("./routes/lastview");
 const logger = require("./logger");
-
-
+const multer = require("multer");
+const path = require("path");
+app.use("/images", express.static(path.join(__dirname, "/images")));
 
 app.use(express.json());
 dotenv.config();
@@ -22,6 +23,21 @@ app.use(
   })
 );
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  res.status(200).json("file has been uploaded");
+  console.log("file has been uploaded")
+});
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log("DB Connection Successfull!"))
@@ -42,9 +58,6 @@ app.use("/api/lastviews", lastviewsRoute);
 // logger.error(new Error('something went wrong'))
 //Whenever someone connects this gets executed
 
-const date = new Date()
-const month = date.toLocaleString('default' , {month:'long'});
-console.log(month)
 
 http.listen(process.env.PORT || 5000, () => {
   logger.info("Server is running");

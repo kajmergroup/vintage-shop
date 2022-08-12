@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
+import axios from "axios";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
@@ -12,14 +13,33 @@ const New = ({ inputs, title }) => {
     categories: "",
     price: "",
     inStock: "",
-    size: "",
-    color: "",
+    size: [],
+    color: [],
   });
+
 
   const handleChange = (e) => {
     setProduct((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log(product);
+  
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      product.img = filename;
+      try {
+        await axios.post("http://localhost:5000/api/upload", data);
+      } catch (err) {}
+    }
+    try {
+      await axios.post("http://localhost:5000/api/products", product);
+    } catch (err) {}
+  };
 
   return (
     <div className="new">
@@ -42,7 +62,7 @@ const New = ({ inputs, title }) => {
               />
             </div>
             <div className="right">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="formInput">
                   <label htmlFor="file">
                     Image: <DriveFolderUploadOutlinedIcon className="icon" />

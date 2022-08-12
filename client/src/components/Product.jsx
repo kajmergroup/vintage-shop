@@ -3,7 +3,7 @@ import "../css/Product.css";
 
 
 const Product = ({ item }) => {
-
+  const PF = "http://localhost:5000/images/"
 
 
   return (
@@ -13,7 +13,7 @@ const Product = ({ item }) => {
         className="link"
         to={`/product/${item._id}`}
       >
-        <img className="img-fluid" src={item.img} alt="" />
+        <img className="img-fluid" src={PF + item.img} alt="" />
       </Link>
       <div className="d-flex justify-content-between">
         

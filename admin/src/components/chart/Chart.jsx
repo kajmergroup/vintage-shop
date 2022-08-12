@@ -20,7 +20,30 @@ const data = [
   { name: "July", Total: 300 },
 ];
 
-const Chart = ({ aspect, title }) => {
+const Chart = ({ aspect, title, income }) => {
+  const x = income.sort(function (a, b) {
+    if (a._id < b._id) return -1;
+  });
+  const newArr = x.map((obj) => {
+    if (obj._id === 2) {
+      return { ...obj, _id: "February" };
+    } else if (obj._id === 3) {
+      return { ...obj, _id: "March" };
+    } else if (obj._id === 4) {
+      return { ...obj, _id: "April" };
+    } else if (obj._id === 5) {
+      return { ...obj, _id: "May" };
+    } else if (obj._id === 6) {
+      return { ...obj, _id: "June" };
+    } else if (obj._id === 7) {
+      return { ...obj, _id: "July" };
+    } else if (obj._id === 8) {
+      return { ...obj, _id: "Agust" };
+    }
+
+    return obj;
+  });
+
   return (
     <div className="chart">
       <div className="title">{title}</div>
@@ -28,7 +51,7 @@ const Chart = ({ aspect, title }) => {
         <AreaChart
           width={730}
           height={250}
-          data={data}
+          data={newArr}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >
           <defs>
@@ -37,12 +60,12 @@ const Chart = ({ aspect, title }) => {
               <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <XAxis dataKey="name" stroke="gray" />
+          <XAxis dataKey="_id" stroke="gray" />
           <CartesianGrid strokeDasharray="3 3" className="chartGrid" />
           <Tooltip />
           <Area
             type="monotone"
-            dataKey="Total"
+            dataKey="total"
             stroke="#8884d8"
             fillOpacity={1}
             fill="url(#total)"

@@ -5,8 +5,21 @@ import Widget from "../../components/widget/Widget";
 import Featured from "../../components/featured/Featured";
 import Chart from "../../components/chart/Chart";
 import Table from "../../components/table/Table";
+import { useEffect } from "react";
+import axios from "axios"
+import { useState } from "react";
 
 const Home = () => {
+  const [income,setIncome] = useState([])
+    useEffect(()=> {
+      const getData = async () => {
+        const res = await axios.get("http://localhost:5000/api/orders/income")
+        setIncome(res.data)
+      }
+      getData()
+    },[])
+    
+
   return (
     <div className="home">
       <Sidebar />
@@ -20,7 +33,7 @@ const Home = () => {
         </div>
         <div className="charts">
           <Featured />
-          <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
+          <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} income={income}/>
         </div>
         <div className="listContainer">
           <div className="listTitle">Latest Transactions</div>

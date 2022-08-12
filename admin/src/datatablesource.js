@@ -1,8 +1,8 @@
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
-    field: "user",
-    headerName: "User",
+    field: "name",
+    headerName: "Name",
     width: 230,
     renderCell: (params) => {
       return (
@@ -18,12 +18,13 @@ export const userColumns = [
     headerName: "Email",
     width: 230,
   },
-
   {
-    field: "age",
-    headerName: "Age",
-    width: 100,
+    field: "location",
+    headerName: "Location",
+    width: 230,
   },
+
+
   {
     field: "status",
     headerName: "Status",
@@ -36,9 +37,9 @@ export const userColumns = [
       );
     },
   },
-];
+]; 
+const PF = "http://localhost:5000/images/"
 export const productColumns = [
-  { field: "id", headerName: "ID", width: 70 },
   {
     field: "product",
     headerName: "Product",
@@ -46,7 +47,8 @@ export const productColumns = [
     renderCell: (params) => {
       return (
         <div className="productWithImg">
-          <img className="productImg" src={params.row.img} alt="avatar" />
+          <img className="productImg" src={ PF + params.row.img}
+           alt="avatar" />
           {params.row.title}
         </div>
       );
@@ -56,17 +58,54 @@ export const productColumns = [
     field: "desc",
     headerName: "Description",
     width: 300,
+    colSpan: 1,
+    renderCell: (params) => {
+      return (
+        <div className="desc">
+          {params.row.desc}
+        </div>
+      )
+    }
+   
   },
-
+  {
+    field: "categories",
+    headerName: "Categories",
+    width: 200,
+    headerAlign:"center",
+    renderCell: (params) => {
+      return (
+        <div className="categories">
+          <span>{params.row.categories}</span>
+        </div>
+      )
+    }
+  },
   {
     field: "price",
     headerName: "Price",
     width: 200,
+    headerAlign:"center",
+    renderCell: (params) => {
+      return (
+        <div className="categories">
+          <span>{params.row.price}</span>
+        </div>
+      )
+    }
   },
   {
     field: "quantity",
     headerName: "Quantity",
     width: 200,
+    headerAlign:"center",
+    renderCell: (params) => {
+      return (
+        <div className="categories">
+          <span>{params.row.quantity}</span>
+        </div>
+      )
+    }
   },
 ];
 
@@ -77,9 +116,9 @@ export const userRows = [
     id: 1,
     username: "Snow",
     img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    status: "active",
+    location:"İzmir",
     email: "1snow@gmail.com",
-    age: 35,
+    status: "active",
   },
   {
     id: 2,

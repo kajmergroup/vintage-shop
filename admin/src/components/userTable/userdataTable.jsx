@@ -2,7 +2,8 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const UserdataTable = () => {
   const [data, setData] = useState(userRows);
@@ -10,6 +11,16 @@ const UserdataTable = () => {
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
+
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     try {
+  //       const res = await axios.get("http://localhost:5000/api/users");
+  //       console.log(res.data)
+  //     } catch (err) {}
+  //   };
+  //   getProducts();
+  // },[]);
 
   const actionColumn = [
     {

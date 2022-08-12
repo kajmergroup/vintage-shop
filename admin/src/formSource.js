@@ -71,6 +71,7 @@ export const productInputs = [
     type: "text", 
     placeholder: "100" 
   },
+  
   {
     name: "inStock",
     id: 5,
@@ -90,5 +91,12 @@ export const productInputs = [
     label: "Color",
     type: "text",
     placeholder: "color",
+  },
+  {
+    name: "quantity", 
+    id: 8, 
+    label: "Quantity", 
+    type: "text", 
+    placeholder: "500" 
   },
 ];
