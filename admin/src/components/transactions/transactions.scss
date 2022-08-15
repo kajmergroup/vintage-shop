@@ -1,0 +1,31 @@
+.transactions {
+    padding: 40px;
+}
+.transactions-header-list {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    .transactions-header-list-item {
+        font-weight: bold;
+        list-style: none;
+        font-size: 18px;
+        
+    }
+}
+.spc {
+    margin-top: 3px;
+    width: 100%;
+    background: lightgray;
+    height: 1px;
+}
+.transactions-content {
+    margin-bottom: 10px;
+    padding: 10px 30px 0 0;
+    display: flex;
+    justify-content: space-between;
+    
+    .content-date {
+        margin-left: 55px;
+    }
+}
+    

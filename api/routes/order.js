@@ -1,6 +1,7 @@
 const Order = require("../models/Order");
 const Cart = require("../models/Cart");
 const User = require("../models/User");
+const Product = require("../models/Product");
 const jwt = require("jsonwebtoken");
 const logger = require("../logger");
 const {
@@ -8,31 +9,46 @@ const {
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
 } = require("./verifyToken");
-
 const router = require("express").Router();
 
 //CREATE
 
-router.post("/",  async (req, res) => {
+router.post("/", async (req, res) => {
   const token = req.headers.token.split(" ")[1];
   const userId = jwt.verify(token, process.env.JWT_SEC, (err, user) => {
     return user.id;
   });
 
-  const user = await User.findOne({userId})
-  const userAddress = user.address
-  const cart = await Cart.findOne({userId})
-  const cartProducts = cart.products
-  const newOrder = new Order({
-    userId:userId,
-    products:cartProducts,
-    address:userAddress,
-    amount: cart.cartTotal,
-  });
-
   try {
+    // const products = await Product.find()
+    const user = await User.findOne({ userId });
+    const userAddress = user.address;
+    const cart = await Cart.findOne({ userId });
+    const cartProducts = cart.products;
+
+    const productId = cartProducts.map((product) =>
+      product.productId.toString()
+    );
+    const productQuantity = cartProducts.map((product) => product.quantity);
+
+
+    for (i = 0; i < productId.length; i++) {
+      const product = await Product.findById(productId[i]);
+      product.quantity -= productQuantity[i];
+      product.save();
+    }
+
+    const newOrder = new Order({
+      userId: userId,
+      products: cartProducts,
+      address: userAddress,
+      amount: cart.cartTotal,
+    });
+
     const savedOrder = await newOrder.save();
-    logger.child({userId:userId}).info('Order "1234" was processed succesffully')
+    logger
+      .child({ userId: userId })
+      .info('Order "1234" was processed succesffully');
     res.status(200).json(savedOrder);
   } catch (err) {
     res.status(500).json(err);
@@ -86,13 +102,11 @@ router.get("/", async (req, res) => {
   }
 });
 
-
-router.get("/income",  async (req, res) => {
+router.get("/income", async (req, res) => {
   const productId = req.query.pid;
   const date = new Date();
   const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
   const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 6));
-  
 
   try {
     const income = await Order.aggregate([
@@ -113,19 +127,15 @@ router.get("/income",  async (req, res) => {
       {
         $group: {
           _id: "$month",
-          total: { $sum: "$sales" }, 
+          total: { $sum: "$sales" },
         },
       },
     ]);
-    
+
     res.status(200).json(income);
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-
-
-
 
 module.exports = router;

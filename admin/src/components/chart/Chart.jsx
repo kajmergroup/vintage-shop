@@ -10,39 +10,10 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  { name: "January", Total: 1200 },
-  { name: "February", Total: 2100 },
-  { name: "March", Total: 800 },
-  { name: "April", Total: 1600 },
-  { name: "May", Total: 900 },
-  { name: "June", Total: 1700 },
-  { name: "July", Total: 300 },
-];
 
-const Chart = ({ aspect, title, income }) => {
-  const x = income.sort(function (a, b) {
-    if (a._id < b._id) return -1;
-  });
-  const newArr = x.map((obj) => {
-    if (obj._id === 2) {
-      return { ...obj, _id: "February" };
-    } else if (obj._id === 3) {
-      return { ...obj, _id: "March" };
-    } else if (obj._id === 4) {
-      return { ...obj, _id: "April" };
-    } else if (obj._id === 5) {
-      return { ...obj, _id: "May" };
-    } else if (obj._id === 6) {
-      return { ...obj, _id: "June" };
-    } else if (obj._id === 7) {
-      return { ...obj, _id: "July" };
-    } else if (obj._id === 8) {
-      return { ...obj, _id: "Agust" };
-    }
 
-    return obj;
-  });
+const Chart = ({ aspect, title, data }) => {
+
 
   return (
     <div className="chart">
@@ -51,7 +22,7 @@ const Chart = ({ aspect, title, income }) => {
         <AreaChart
           width={730}
           height={250}
-          data={newArr}
+          data={data}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >
           <defs>

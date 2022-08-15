@@ -70,7 +70,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { isFetching   } = useSelector((state) => state.user);
+ 
 
   const handleClick = () => {
     login(dispatch, { username, password });
@@ -89,7 +89,7 @@ const Login = () => {
             placeholder="şifre"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleClick} disabled={isFetching}>
+          <Button onClick={handleClick}>
             GİRİŞ YAP
           </Button>
 

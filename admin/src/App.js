@@ -5,7 +5,7 @@ import ProductList from "./pages/productList/productList";
 import SingleUser from "./pages/singleUser/SingleUser";
 import SingleProduct from "./pages/singleProduct/SingleProduct";
 import New from "./pages/new/New";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
 import { productInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
@@ -13,6 +13,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
+  const user = localStorage.getItem('id')
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
@@ -20,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
+            <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
             <Route path="users">
               <Route index element={<UserList />} />
               <Route path=":userId" element={<SingleUser />} />

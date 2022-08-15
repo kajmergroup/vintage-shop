@@ -1,35 +1,33 @@
 const Product = require("../models/Product");
+const Order = require("../models/Order");
 const { verifyTokenAndAdmin } = require("./verifyToken");
 
 const router = require("express").Router();
 
 //CREATE
 
-router.post("/",  async (req, res) => {
-  
-  const title = req.body.title
-  const desc = req.body.desc
-  const categories = req.body.categories
-  const price = parseInt(req.body.price)
-  const inStock = req.body.inStock
-  const size = req.body.size
-  const color = req.body.color
-  const img = req.body.img
-  const quantity = parseInt(req.body.quantity)
-  
-  
+router.post("/", async (req, res) => {
+  const title = req.body.title;
+  const desc = req.body.desc;
+  const categories = req.body.categories;
+  const price = parseInt(req.body.price);
+  const inStock = req.body.inStock;
+  const size = req.body.size;
+  const color = req.body.color;
+  const img = req.body.img;
+  const quantity = parseInt(req.body.quantity);
 
   const newProduct = new Product({
-    title:title,
-    desc:desc,
-    categories:categories,
-    price:price,
-    inStock:inStock,
-    size:size,
-    color:color,
-    quantity:quantity,
-    img:img
-})
+    title: title,
+    desc: desc,
+    categories: categories,
+    price: price,
+    inStock: inStock,
+    size: size,
+    color: color,
+    quantity: quantity,
+    img: img,
+  });
 
   try {
     const savedProduct = await newProduct.save();
@@ -97,6 +95,29 @@ router.get("/", async (req, res) => {
     res.status(200).json(products);
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+//GET ORDER WITH PRODUCT ID STATS
+
+router.get("/stats/:productId", async (req, res) => {
+  const productId = req.params.productId;
+  try {
+    const orders = await Order.find({
+      "products.productId": { $in: productId },
+    });
+    const k = orders.map((order) =>
+      order.products.filter((product) => product.productId == productId)
+    );
+
+    for (let i = 0; i < orders.length; i++) {
+      orders[i].products = k[i];
+    }
+    
+
+    res.status(200).json(orders);
+  } catch (err) {
+    res.status(500).json("olmuyor");
   }
 });
 
