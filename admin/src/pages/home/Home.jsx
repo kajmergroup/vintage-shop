@@ -12,6 +12,7 @@ import { useState } from "react";
 const Home = () => {
   const [data, setData] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [leftover, setLeftover] = useState([])
   const totalOrder = orders.length
   const [user,setUser] = useState('')
   const earning = data.map(data => data.total)
@@ -25,6 +26,13 @@ const Home = () => {
     const getData = async () => {
       const res = await axios.get("http://localhost:5000/api/orders/income");
       setData(res.data);
+    };
+    getData();
+  }, []);
+  useEffect(() => {
+    const getData = async () => {
+      const res = await axios.get("http://localhost:5000/api/products/stats");
+      setLeftover(res.data);
     };
     getData();
   }, []);
@@ -77,10 +85,10 @@ const Home = () => {
           <Widget type="user" amount={user} />
           <Widget type="order" amount={totalOrder} />
           <Widget type="earning" amount={sum} />
-          <Widget type="balance" />
+          <Widget type="balance" amount={sum} />
         </div>
         <div className="charts">
-          <Featured />
+          <Featured data={leftover} />
           <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} data={newArr} />
         </div>
         <div className="listContainer">

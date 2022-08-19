@@ -1,0 +1,28 @@
+.chart {
+  flex: 4;
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  padding: 10px;
+  color: gray;
+
+  .ty-df {
+    display: flex;
+    justify-content: space-between;
+
+    .chart-select {
+      border: 1px solid lightgray;
+      height: 34px;
+
+      .chart-option {
+        font-size: 12px;
+      }
+    }
+    .title {
+      margin-bottom: 60px;
+    }
+  }
+
+  .chartGrid {
+    stroke: rgb(228, 225, 225);
+  }
+}

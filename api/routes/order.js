@@ -102,7 +102,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/income", async (req, res) => {
+router.get("/income",  async (req, res) => {
   const productId = req.query.pid;
   const date = new Date();
   const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
@@ -113,9 +113,7 @@ router.get("/income", async (req, res) => {
       {
         $match: {
           createdAt: { $gte: previousMonth },
-          ...(productId && {
-            products: { $elemMatch: { productId } },
-          }),
+         
         },
       },
       {
@@ -131,11 +129,11 @@ router.get("/income", async (req, res) => {
         },
       },
     ]);
-
     res.status(200).json(income);
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 module.exports = router;

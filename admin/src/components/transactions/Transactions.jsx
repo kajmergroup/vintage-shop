@@ -1,10 +1,6 @@
 import "./transactions.scss";
 
 const Transactions = ({ data, id }) => {
-  const products = data.map((order)=>
-  order.products.map(item => item))
-  console.log(products)
- 
 
   return (
     <div className="transactions">
@@ -33,11 +29,11 @@ const Transactions = ({ data, id }) => {
         order.products.map((item) => (
           <div>
             <div className="transactions-content">
-              <span>{order._id}</span>
-              <span>{item.name}</span>
-              <span>{order.userId}</span>
-              <span>{order.createdAt}</span>
-              <span>{item.quantity}</span>
+              <span className="content-item">{order._id}</span>
+              <span className="content-item">{item.name}</span>
+              <span className="content-item">{order.userId}</span>
+              <span className="content-item">{order.createdAt}</span>
+              <span className="content-item">{item.quantity}</span>
             </div>
             <div className="spc"></div>
           </div>

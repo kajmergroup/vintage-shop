@@ -6,6 +6,7 @@
     align-items: center;
     display: flex;
     .transactions-header-list-item {
+        width: 250px;
         font-weight: bold;
         list-style: none;
         font-size: 18px;
@@ -23,9 +24,12 @@
     padding: 10px 30px 0 0;
     display: flex;
     justify-content: space-between;
-    
+    .content-item{
+        width: 230px;
+    }
     .content-date {
         margin-left: 55px;
+        white-space: nowrap;
     }
 }
     

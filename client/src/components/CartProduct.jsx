@@ -9,7 +9,7 @@ const ProductColor = styled.div`
   border-radius: 50%;
   background-color: ${(props) => props.color};
 `;
-
+const PF = "http://localhost:5000/images/"
 const CartProduct = ({ product, setProductQuantity }) => {
   const id = product.productId;
 
@@ -42,7 +42,7 @@ const CartProduct = ({ product, setProductQuantity }) => {
     <>
       <div className=" d-flex justify-content-between mb-3">
         <div className="d-flex product-info">
-          <img alt="" className="img img-fluid" src={product.img} />
+          <img alt="" className="img img-fluid" src={PF + product.img} />
           <div className="d-flex flex-column justify-content-center p-3">
             <div className="d-flex m-1">
               <p>

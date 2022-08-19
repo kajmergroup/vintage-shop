@@ -1,12 +1,13 @@
 import "../../css/UserLastViews.css";
 
 const UserLastViews = ({product}) => {
+  const PF = "http://localhost:5000/images/"
   return (
     <div className="last-view-product d-flex flex-column">
       <img
         className="last-view-product-img"
         alt=""
-        src={product.img}
+        src={ PF + product.img}
       />
       <span className="last-view-product-title">
         {product.name}

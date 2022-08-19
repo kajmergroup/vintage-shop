@@ -1,33 +1,24 @@
 import "./singleproduct.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import Chart from "../../components/chart/Chart";
+import BarChar from "../../components/chart2/Chart2";
 import Transactions from "../../components/transactions/Transactions";
-import { useEffect , useState   } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-
-
-const data = [
-  { _id: "January", total: 1200 },
-  { _id: "February", total: 2100 },
-  { _id: "March", total: 800 },
-  { _id: "April", total: 1600 },
-  { _id: "May", total: 900 },
-  { _id: "June", total: 1700 },
-  { _id: "July", total: 300 },
-];
 const SingleProduct = () => {
+  const [data, setData] = useState([]);
   const params = useParams();
-  const id = params.id
-
+  const id = params.id;
+  const [query, setQuery] = useState("");
   const [product, setProduct] = useState({});
   const [order, setOrder] = useState([]);
+  console.log(query);
 
   useEffect(() => {
     const getOrders = async () => {
-      const res = await axios.get("http://localhost:5000/api/products/stats/" + id);
+      const res = await axios.get("http://localhost:5000/api/products/" + id);
       setOrder(res.data);
     };
     getOrders();
@@ -36,18 +27,31 @@ const SingleProduct = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/products/find/" + id)
+        const res = await axios.get(
+          "http://localhost:5000/api/products/find/" + id
+        );
         setProduct(res.data);
       } catch (err) {}
-    }
+    };
     getProduct();
   }, [id]);
+  useEffect(() => {
+    const getStats = async () => {
+      try {
+        const res = await axios.get(
+          query
+            ? `http://localhost:5000/api/products/stats/${id}?query=${query}`
+            : `http://localhost:5000/api/products/stats/${id}?query='last 6 months'`
+        );
+        setData(res.data);
+      } catch (err) {}
+    };
+    getStats();
+  }, [id, query]);
 
- 
   const PF = "http://localhost:5000/images/";
 
   return (
-    
     <div className="single">
       <Sidebar />
       <div className="singleContainer">
@@ -85,16 +89,20 @@ const SingleProduct = () => {
             </div>
           </div>
           <div className="right">
-          <Chart title="Last 6 Months (Revenue)" aspect={3 / 1} data={data} />
+            <BarChar
+              title="Last 6 Months (Sales)"
+              aspect={3 / 1}
+              data={data}
+              setQuery={setQuery}
+            />
           </div>
         </div>
         <div className="bottom">
           <h1 className="title">Last Transactions</h1>
-            <Transactions data={order} id={id}/>
+          <Transactions data={order} id={id} />
         </div>
       </div>
     </div>
-  
   );
 };
 

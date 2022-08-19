@@ -13,8 +13,8 @@ const lastviewsRoute = require("./routes/lastview");
 const logger = require("./logger");
 const multer = require("multer");
 const path = require("path");
-app.use("/images", express.static(path.join(__dirname, "/images")));
 
+app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(express.json());
 dotenv.config();
 app.use(
@@ -52,11 +52,7 @@ app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/lastviews", lastviewsRoute);
 
-// logger.info('text info')
-// logger.warn('text warn')
-// logger.debug('text debug ')
-// logger.error(new Error('something went wrong'))
-//Whenever someone connects this gets executed
+
 
 
 http.listen(process.env.PORT || 5000, () => {

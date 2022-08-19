@@ -10,9 +10,9 @@ import CartProduct from "../components/CartProduct";
 import { Link } from "react-router-dom";
 import "../css/CartPage.css";
 
+
 const Cart = () => {
   const [products, setProducts] = useState([]);
-
   const [productQuantity, setProductQuantity] = useState();
 
   const user = useSelector((state) => state.user.currentUser);

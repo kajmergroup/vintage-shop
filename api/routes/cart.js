@@ -2,7 +2,6 @@ const Cart = require("../models/Cart");
 const {
   verifyToken,
   verifyTokenAndAuthorization,
-  verifyTokenAndAdmin,
 } = require("./verifyToken");
 const jwt = require("jsonwebtoken");
 

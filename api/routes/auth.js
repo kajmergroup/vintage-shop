@@ -6,11 +6,9 @@ const logger = require("../logger");
 const VerifyCode = require("../controllers/verifycode");
 const Verify = require("../models/Verify");
 
-
 // SEND EMAIL
 router.post("/verify", async (req, res) => {
   const email = req.body.email;
-  
 
   let verify = await Verify.findOne({ email });
   try {
@@ -19,27 +17,25 @@ router.post("/verify", async (req, res) => {
       verify.code = code;
     } else {
       Verify.create({
-        code: code, 
+        code: code,
         email: req.body.email,
       });
     }
     VerifyCode(req, code);
     verify.save();
-    setTimeout
-    res.status(200).json('success:true')
-    logger.info('success:true from verify endpoint')
-    
+    setTimeout;
+    res.status(200).json("success:true");
+    logger.info("success:true from verify endpoint");
   } catch (err) {
-    res.status(200).json('success:false')
-    logger.info('success:false from verify endpoint')
+    res.status(200).json("success:false");
+    logger.info("success:false from verify endpoint");
   }
 });
 // REGISTER
 router.post("/register", async (req, res) => {
-  
   const email = req.body.email;
   const code = await Verify.findOne({ email });
-  
+
   try {
     if (code.code == req.body.code) {
       const newUser = new User({
@@ -56,14 +52,14 @@ router.post("/register", async (req, res) => {
       });
       const savedUser = await newUser.save();
       res.status(201).json(savedUser);
-      logger.info('success:true from register endpoint')
+      logger.info("success:true from register endpoint");
     } else {
       res.status(500).json("geçersiz kod girdiniz");
-      logger.info('success:false from register endpoint')
+      logger.info("success:false from register endpoint");
     }
   } catch (err) {
     res.status(500).json(err);
-    logger.error(`${err}`)
+    logger.error(`${err}`);
   }
 });
 

@@ -1,6 +1,7 @@
 const Product = require("../models/Product");
 const Order = require("../models/Order");
 const { verifyTokenAndAdmin } = require("./verifyToken");
+var _ = require("lodash");
 
 const router = require("express").Router();
 
@@ -32,6 +33,77 @@ router.post("/", async (req, res) => {
   try {
     const savedProduct = await newProduct.save();
     res.status(200).json(savedProduct);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+// GET LESS LEFTOVER PRODUCTS
+
+router.get("/stats", async (req, res) => {
+  const products = await Product.find();
+
+  try {
+    const newArry = products.filter((product) => product.quantity < 50);
+    res.status(200).json(newArry);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// GET SINGLE PRODUCT STATS
+
+router.get("/stats/:productId", async (req, res) => {
+  const query = req.query.query.split(' ')[1]
+  console.log(query)
+  const productId = req.params.productId;
+
+  const date = new Date();
+  const lastMonth = new Date(date.setMonth(date.getMonth() ));
+  const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() -  query));
+  console.log(previousMonth)
+  try {
+    // get last 6 months orders
+    const orders = await Order.aggregate([
+      {
+        $match: {
+          createdAt: { $gte: previousMonth },
+        },
+      },
+    ]).sort({ createdAt: 1 });
+    // filtered by productId
+    const filteredProducts = orders.map((order) =>
+      order.products.filter((product) => product.productId == productId)
+    );
+    // added filtered products in orders
+    for (let i = 0; i < orders.length; i++) {
+      orders[i].products = filteredProducts[i];
+    }
+    // deleted empty arrays
+    const newARry = orders.filter((order) => order.products.length > 0);
+    // match date and sales
+    let result = [];
+    for (let i = 0; i < newARry.length; i++) {
+      const date = newARry.map((order) => order.createdAt);
+      const sale = newARry.map((orders) =>
+        orders.products.map((product) => product.quantity)
+      );
+      const quantity = sale.map((quantity) => quantity[0]);
+      result.push({
+        name: date[i].toLocaleString("default", { month: "long" }),
+        total: quantity[i],
+      });
+    }
+    //match same months
+    const finalResult = _(result)
+      .groupBy("name")
+      .map((objs, key) => ({
+        name: key,
+        total: _.sumBy(objs, "total"),
+      }))
+      .value();
+    
+
+    res.status(200).json(finalResult);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -100,24 +172,23 @@ router.get("/", async (req, res) => {
 
 //GET ORDER WITH PRODUCT ID STATS
 
-router.get("/stats/:productId", async (req, res) => {
+router.get("/:productId", async (req, res) => {
   const productId = req.params.productId;
   try {
     const orders = await Order.find({
       "products.productId": { $in: productId },
     });
-    const k = orders.map((order) =>
+    const filteredProducts = orders.map((order) =>
       order.products.filter((product) => product.productId == productId)
     );
 
     for (let i = 0; i < orders.length; i++) {
-      orders[i].products = k[i];
+      orders[i].products = filteredProducts[i];
     }
-    
 
     res.status(200).json(orders);
   } catch (err) {
-    res.status(500).json("olmuyor");
+    res.status(500).json(err);
   }
 });
 

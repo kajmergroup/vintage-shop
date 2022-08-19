@@ -1,8 +1,6 @@
 const nodemailer = require("nodemailer");
-const Verify = require("../models/Verify");
 
 function VerifyCode(req, code) {
-  
   const transporter = nodemailer.createTransport({
     service: "hotmail",
     auth: {
