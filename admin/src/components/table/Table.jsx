@@ -24,7 +24,7 @@ const List = ({ data }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((data) =>
+          {data.slice(0,10).map((data) =>
             data.products.map((product) => (
               <TableRow key={data._id}>
                 <TableCell className="tableCell">{data._id}</TableCell>

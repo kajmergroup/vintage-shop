@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  server:
+    image: "node:latest"
+    working_dir: /api
+    volumes:
+      - ./api:/api
+    ports:
+      - "5000:5000"
+    command: bash -c "npm install && node_modules/.bin/nodemon app"
+    restart: always
+    depends_on:
+      - mongo
+      - postgres
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    restart: always
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: postgres
+      POSTGRES_DB: vintage_shop
+    ports:
+      - "5432:5432"
+  client:
+    build:
+      context: .
+    command: npm start
+    volumes:
+      - /client/node_modules
+      - ./client:/client
+    depends_on:
+      - server
+    ports:
+      - '3000:3000'

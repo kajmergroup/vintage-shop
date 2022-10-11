@@ -1,8 +1,5 @@
 const Cart = require("../models/Cart");
-const {
-  verifyToken,
-  verifyTokenAndAuthorization,
-} = require("./verifyToken");
+const { verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
 const jwt = require("jsonwebtoken");
 
 const router = require("express").Router();

@@ -14,7 +14,6 @@ const SingleProduct = () => {
   const [query, setQuery] = useState("");
   const [product, setProduct] = useState({});
   const [order, setOrder] = useState([]);
-  console.log(query);
 
   useEffect(() => {
     const getOrders = async () => {

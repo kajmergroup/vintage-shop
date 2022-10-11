@@ -1,7 +1,6 @@
 import "./transactions.scss";
 
 const Transactions = ({ data, id }) => {
-
   return (
     <div className="transactions">
       <div className="transactions-header">
@@ -25,7 +24,7 @@ const Transactions = ({ data, id }) => {
         <div className="spc"></div>
       </div>
 
-      {data.map((order) =>
+      {data.slice(0,10).map((order) =>
         order.products.map((item) => (
           <div>
             <div className="transactions-content">

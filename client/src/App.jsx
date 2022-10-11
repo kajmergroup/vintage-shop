@@ -17,6 +17,8 @@ import UserOrders from "./pages/UserOrdersPage";
 import UserAssessments from "./pages/UserAssessments";
 import UserInformationPage from "./pages/UserInformationPage";
 import UserLastViews from "./pages/UserLastViewsPage";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);

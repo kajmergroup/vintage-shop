@@ -6,6 +6,7 @@ import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest, userRequest } from "../requestMethods";
+import Recommended from "../components/Recommended";
 
 const Container = styled.div``;
 
@@ -225,19 +226,7 @@ const Product = () => {
             </AddContainer>
           </InfoContainer>
         </Wrapper>
-        <div className="container">
-          <div className="row">
-            <div className="col-4">
-              <img className="img-fluid" src={product.img} alt="" />
-            </div>
-            <div className="col-4">
-              <img className="img-fluid" src={product.img} alt="" />
-            </div>
-            <div className="col-4">
-              <img className="img-fluid" src={product.img} alt="" />
-            </div>
-          </div>
-        </div>
+        <Recommended/>
       </div>
       <Footer />
     </Container>

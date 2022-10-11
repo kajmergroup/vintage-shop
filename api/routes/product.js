@@ -2,7 +2,7 @@ const Product = require("../models/Product");
 const Order = require("../models/Order");
 const { verifyTokenAndAdmin } = require("./verifyToken");
 var _ = require("lodash");
-
+const jwt = require("jsonwebtoken");
 const router = require("express").Router();
 
 //CREATE
@@ -37,6 +37,50 @@ router.post("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// GET RECOMMENDED PRODUCTS
+
+router.get("/recommended/:id", async (req, res) => {
+  const productId = req.params.id;
+  const token = req.headers.token.split(" ")[1];
+  const userId = jwt.verify(token, process.env.JWT_SEC, (err, user) => {
+    return user.id;
+  });
+  
+  try {
+    // get ref product categories
+    const refProd = await Product.findById(productId);
+    const refcat = refProd.categories;
+    // filtered products with categories
+    const products = await Product.find({
+      categories: {
+        $in: [refcat],
+      },
+    });
+    // get all orders with userId
+    const orders = await Order.find({ userId: userId });
+    // take productIds
+    const productIds = orders.map((order) =>
+      order.products.map((product) => product.productId)
+    );
+    const ids = [];
+    for (let i = 0; i < productIds.length; i++) {
+      for (let j = 0; j < productIds[i].length; j++) {
+        ids.push(productIds[i][j]);
+      }
+    }
+    const newids = ids.map((id) => id.toString());
+    const uniqueIds = [...new Set(newids)];
+
+    const result = products.filter(item =>  !uniqueIds.includes(item._id) )
+
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 // GET LESS LEFTOVER PRODUCTS
 
 router.get("/stats", async (req, res) => {
@@ -53,14 +97,15 @@ router.get("/stats", async (req, res) => {
 // GET SINGLE PRODUCT STATS
 
 router.get("/stats/:productId", async (req, res) => {
-  const query = req.query.query.split(' ')[1]
-  console.log(query)
+  const query = req.query.query.split(" ")[1];
   const productId = req.params.productId;
 
   const date = new Date();
-  const lastMonth = new Date(date.setMonth(date.getMonth() ));
-  const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() -  query));
-  console.log(previousMonth)
+  const lastMonth = new Date(date.setMonth(date.getMonth()));
+  const previousMonth = new Date(
+    new Date().setMonth(lastMonth.getMonth() - query)
+  );
+  
   try {
     // get last 6 months orders
     const orders = await Order.aggregate([
@@ -101,7 +146,6 @@ router.get("/stats/:productId", async (req, res) => {
         total: _.sumBy(objs, "total"),
       }))
       .value();
-    
 
     res.status(200).json(finalResult);
   } catch (err) {
