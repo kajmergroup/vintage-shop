@@ -31,7 +31,6 @@ router.post("/", async (req, res) => {
     );
     const productQuantity = cartProducts.map((product) => product.quantity);
 
-
     for (i = 0; i < productId.length; i++) {
       const product = await Product.findById(productId[i]);
       product.quantity -= productQuantity[i];
@@ -102,7 +101,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/income",  async (req, res) => {
+router.get("/income", async (req, res) => {
   const productId = req.query.pid;
   const date = new Date();
   const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
@@ -113,7 +112,6 @@ router.get("/income",  async (req, res) => {
       {
         $match: {
           createdAt: { $gte: previousMonth },
-         
         },
       },
       {
@@ -134,6 +132,5 @@ router.get("/income",  async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 module.exports = router;

@@ -3,7 +3,7 @@ const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const logger = require("../logger");
-const VerifyCode = require("../controllers/verifycode");
+const VerifyCode = require("../controllers/verifycode.controller");
 const Verify = require("../models/Verify");
 
 // SEND EMAIL
@@ -100,6 +100,8 @@ router.post("/login", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// LOGOUT
 
 router.get("/logout", (req, res) => {
   logger.info("log from login endpoint logout");

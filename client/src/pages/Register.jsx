@@ -64,7 +64,6 @@ const Register = () => {
 
   const [show, setShow] = useState("none");
   const [time, setTime] = useState();
-  const [input, setInput] = useState();
   // const code = parseInt(inpt);
   
   const [user, setUser] = useState({

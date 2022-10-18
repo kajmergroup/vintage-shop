@@ -7,7 +7,7 @@ services:
       - ./api:/api
     ports:
       - "5000:5000"
-    command: bash -c "npm install && node_modules/.bin/nodemon app"
+    command: bash -c "npm install && node_modules/.bin/nodemon -L app"
     restart: always
     depends_on:
       - mongo
@@ -23,7 +23,7 @@ services:
     environment:
       POSTGRES_PASSWORD: 123
       POSTGRES_USER: postgres
-      POSTGRES_DB: vintage_shop
+      POSTGRES_DB: vintage_db
     ports:
       - "5432:5432"
   client:
@@ -35,5 +35,7 @@ services:
       - ./client:/client
     depends_on:
       - server
+      - mongo
+      - postgres
     ports:
-      - '3000:3000'
+      - "3000:3000"
