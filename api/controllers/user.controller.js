@@ -7,8 +7,9 @@ const logger = require("../logger");
 // UPDATE USER
 exports.update = async (req, res) => {
   try {
-    const user = await User.findOne({ where: { id: req.param.id } });
+    const user = await User.findOne({ where: { id: req.params.id } });
     user.set({
+      username: req.body.username,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       email: req.body.email,
@@ -32,6 +33,7 @@ exports.delete = async (req, res) => {
       },
     });
     res.status(200).json(`User ${req.params.id} has been deleted`);
+    logger.info(`User ${req.params.id} has been deleted..`);
   } catch (err) {
     res.status(500).json(err);
     logger.warn("Something went wrong while deleting user");
@@ -42,6 +44,7 @@ exports.delete = async (req, res) => {
 exports.getAll = async (req, res) => {
   try {
     const users = await User.findAll();
+
     res.status(200).json(users);
   } catch (err) {
     res.status(500).json(err);
@@ -53,12 +56,34 @@ exports.getAll = async (req, res) => {
 exports.getOne = async (req, res) => {
   try {
     const user = await User.findOne({ where: { id: req.params.id } });
+    console.log(user.username);
     res.status(200).json(user);
   } catch (err) {
     res.status(500).json(err);
     logger.warn("Something went wrong while getting single user");
   }
 };
+
+
+
+
+
+// GET USER ADDRESS 
+
+exports.get_address = async (req,res) => {
+  const token = req.headers.token.split(" ")[1];
+  const userId = jwt.verify(token, process.env.JWT_SEC, (err, user) => {
+    return user.id;
+  });
+  try{
+    const address = await Address.findAll({where:{user_id:userId}})
+    res.status(200).json(address)
+  }catch(err){
+    res.status(500).json(err)
+    logger.warn(`Something went wrong while getting  user's address.`)
+  }
+}
+
 
 // UPDATE USER ADDRESS
 exports.update_address = async (req, res) => {

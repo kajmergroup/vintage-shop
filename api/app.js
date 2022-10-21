@@ -15,10 +15,9 @@ const logger = require("./logger");
 const multer = require("multer");
 const path = require("path");
 const db = require("./models/index");
-const authRoutev2 = require('./routes/auth.routes')
-const userRoutev2= require('./routes/user.routes')
-
-
+const authRoutev2 = require("./routes/auth.routes");
+const userRoutev2 = require("./routes/user.routes");
+const productRoutev2 = require("./routes/product.routes");
 
 app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(express.json());
@@ -60,7 +59,9 @@ db.sequelize
     console.log("postgres is not ok ", err);
   });
 
-
+ 
+  
+  
 
 
 app.use("/api/auth", authRoute);
@@ -69,12 +70,11 @@ app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/lastviews", lastviewsRoute);
-app.use('/api/v2/auth',authRoutev2);
-app.use('/api/v2/user',userRoutev2)
+app.use("/api/v2/auth", authRoutev2);
+app.use("/api/v2/users", userRoutev2);
+app.use("/api/v2/products", productRoutev2);
 
 http.listen(process.env.PORT || 5000, () => {
   logger.info("Server is running");
   console.log("Server is running!");
 });
-
-
